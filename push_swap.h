@@ -6,27 +6,24 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:29:06 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/04 16:45:58 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/04 18:04:05 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "libft.h"
+# include <libc.h>
+# include "libft/libft.h"
 
-typedef struct	s_list
+typedef struct	s_num
 {
 	int				data;
-	struct s_list	*next;
-}	t_list;
+	int				pos;
+	struct s_num	*next;
+}	t_num;
 
-typedef struct	s_pile
-{
-	t_list	*b;
-	t_list	*a;
-}	t_pile;
-
-t_list	*ft_lstnew_int(int content);
+t_num	*ft_lstnew_int(int data, int pos);
+t_num	**create_a(int len, int data);
 
 
 #endif

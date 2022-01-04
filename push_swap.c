@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/04 17:23:29 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/04 18:49:56 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,36 @@ t_num	*ft_lstnew_int(int data, int pos)
 	return (new_elem);
 }
 
+void	ft_lstadd(t_num **alst, t_num *new)
+{
+	t_num	*last;
+
+	if (alst)
+	{
+		if (*alst == NULL)
+			*alst = new;
+		else
+		{
+			while ((*alst)->next)
+			{
+				*alst = (*alst)->next;
+			}
+			last = *alst;
+			last->next = new;
+		}
+	}
+}
+
 t_num	**create_a(int len, int data)
 {
 	t_num	**stack_a;
 	int		i;
 
 	i = 1;
-	stack_a = malloc(size_of(t_num) * len);
-	if (!stack_a)
-		return (NULL);
+	stack_a = NULL;
 	while (i <= len)
 	{
-		ft_lstadd_back(stack_a, ft_lstnew_int(data, i));
+		ft_lstadd(stack_a, ft_lstnew_int(data, i));
 		i++;
 	}
 	return (stack_a);
@@ -49,7 +67,7 @@ int	check_int(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == "-")
+		if (str[i] == '-')
 			i++;
 		if (!((ft_isdigit(str[i]) == 1) || (str[i] >= 9 && str[i] <= 13)
 		|| str[i] == ' '))
@@ -64,7 +82,7 @@ int	main(int argc, char **argv)
 	int	i;
 
 	i = 1;
-	while (argv[i])
+	while (i < argc)
 	{
 		if (check_int(argv[i]) == 0)
 		{
@@ -73,5 +91,12 @@ int	main(int argc, char **argv)
 		}
 		i++;
 	}
-
+	i = 1;
+	while (i < argc)
+	{
+		printf("argv[i] = %d", ft_atoi(argv[i]));
+		create_a(argc, ft_atoi(argv[i]));
+		i++;
+	}
+	return (0);
 }

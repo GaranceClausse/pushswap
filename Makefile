@@ -6,13 +6,11 @@
 #    By: gclausse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:46:56 by gclausse          #+#    #+#              #
-#    Updated: 2022/01/04 15:38:21 by gclausse         ###   ########.fr        #
+#    Updated: 2022/01/04 17:25:50 by gclausse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC= check_input.c \
-	place_num.c \
-	push_swap.c \
+SRC= push_swap.c \
 
 
 LIBFT_PATH= libft
