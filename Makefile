@@ -6,11 +6,14 @@
 #    By: gclausse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:46:56 by gclausse          #+#    #+#              #
-#    Updated: 2021/12/17 12:10:50 by gclausse         ###   ########.fr        #
+#    Updated: 2022/01/04 15:38:21 by gclausse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC= 
+SRC= check_input.c \
+	place_num.c \
+	push_swap.c \
+
 
 LIBFT_PATH= libft
 
@@ -23,8 +26,6 @@ CC= gcc
 CFLAGS= -Wall -Werror -Wextra -I${LIBFT_PATH}
 
 OBJ= ${SRC:.c=.o}
-
-OBJBONUS= ${SRCBONUS:.c=.o}
 
 %.o: %.c
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o} 

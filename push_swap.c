@@ -1,45 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   place_num.c                                        :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/30 16:27:15 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/04 15:40:52 by gclausse         ###   ########.fr       */
+/*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
+/*   Updated: 2022/01/04 15:40:01 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	place_num(size_t b, int x)
+int	check_int(char *str)
 {
 	int	i;
-	int	rang_x;
 
-	i = 1;
-	if (x < b(i))
-		rang_x = 1;
-	while (x < b(i))
+	i = 0;
+	while (str[i])
 	{
-		rang_x = i;
+		if (str[i] == "-")
+			i++;
+		if (!((ft_isdigit(str[i]) == 1) || (str[i] >= 9 && str[i] <= 13)
+		|| str[i] == ' '))
+			return (0);
 		i++;
 	}
-	return (i);
+	return (1);
 }
 
-void	sort_b(size_t b, int x)
+int	main(int argc, char **argv)
 {
 	int	i;
-	int	size;
 
-	i = place_num(b, x);
-	size = ft_lstsize(b);
-	if (i = 1)
-		pa;
-	else if (i = 2)
+	i = 1;
+	while (argv[i])
 	{
-		pa;
-		sa;
+		if (check_int(argv[i]) == 0)
+		{
+			write (1, "Error\n", 6);
+			return (0);
+		}
+		i++;
 	}
+
 }
