@@ -6,11 +6,41 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/04 15:40:01 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/04 17:23:29 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_num	*ft_lstnew_int(int data, int pos)
+{
+	t_num	*new_elem;
+
+	new_elem = malloc(sizeof(t_num));
+	if (!new_elem)
+		return (NULL);
+	new_elem->data = data;
+	new_elem->pos = pos;
+	new_elem->next = NULL;
+	return (new_elem);
+}
+
+t_num	**create_a(int len, int data)
+{
+	t_num	**stack_a;
+	int		i;
+
+	i = 1;
+	stack_a = malloc(size_of(t_num) * len);
+	if (!stack_a)
+		return (NULL);
+	while (i <= len)
+	{
+		ft_lstadd_back(stack_a, ft_lstnew_int(data, i));
+		i++;
+	}
+	return (stack_a);
+}
 
 int	check_int(char *str)
 {
