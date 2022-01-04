@@ -6,20 +6,17 @@
 #    By: gclausse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:46:56 by gclausse          #+#    #+#              #
-#    Updated: 2021/12/03 21:10:58 by gclausse         ###   ########.fr        #
+#    Updated: 2021/12/17 12:10:50 by gclausse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC= ft_putnbr_base.c\
-	 ft_putnbr_base_unsgn.c\
-	 ft_putnbr_usgn_lg.c\
-	 ft_printf.c
+SRC= 
 
 LIBFT_PATH= libft
 
 LIBFT_NAME= libft.a
 
-NAME= libftprintf.a
+NAME= push_swap.a
 
 CC= gcc 
 
