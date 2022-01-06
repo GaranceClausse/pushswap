@@ -6,11 +6,12 @@
 #    By: gclausse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:46:56 by gclausse          #+#    #+#              #
-#    Updated: 2022/01/06 14:45:33 by gclausse         ###   ########.fr        #
+#    Updated: 2022/01/06 17:38:22 by gclausse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC= push_swap.c \
+	 swap_utils.c
 
 
 LIBFT_PATH= libft

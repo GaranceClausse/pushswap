@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/06 16:04:13 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/06 18:15:20 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ t_num	*create_a(int argc, char **argv)
 		tmp->next = stack_a;
 		i--;
 	}
-	ft_afficher(stack_a);
 	return (stack_a);
 }
 
@@ -72,12 +71,35 @@ int	check_int(char *str)
 			return (0);
 		i++;
 	}
+
 	return (1);
+}
+
+int	check_doubles(char **argv, char *num, int pos)
+{
+	int	i;
+
+	i = 1;
+	while (i < pos)
+	{
+		if (ft_atoi(argv[i]) == ft_atoi(num))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+void malloc_pbm(char **tmp, int j)
+{
+	while (j > 0)
+		free(tmp[j--]);
+	free (tmp);
 }
 
 int	main(int argc, char **argv)
 {
 	int		i;
+	int	j;
 	char	**tmp;
 
 	i = 0;
@@ -91,17 +113,21 @@ int	main(int argc, char **argv)
 			i++;
 		}
 		argc = i + 1;
+		j = i + 1;
 	}
 	i = 1;
 	while (i < argc)
 	{
-		if (check_int(argv[i]) == 0)
+		if (check_int(argv[i]) == 0 || check_doubles(argv, argv[i], i) == 0)
 		{
 			write (1, "Error\n", 6);
+			malloc_pbm(tmp, j);
 			return (0);
 		}
 		i++;
 	}
-	create_a(argc, argv);
+	
+	ft_afficher(create_a(argc, argv));
+	ft_afficher(rotate_a(create_a(argc, argv)));
 	return (0);
 }
