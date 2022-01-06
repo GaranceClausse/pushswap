@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/04 18:49:56 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/06 14:11:19 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,38 +25,34 @@ t_num	*ft_lstnew_int(int data, int pos)
 	return (new_elem);
 }
 
-void	ft_lstadd(t_num **alst, t_num *new)
+static void    ft_afficher(t_num *stack)
 {
-	t_num	*last;
-
-	if (alst)
-	{
-		if (*alst == NULL)
-			*alst = new;
-		else
-		{
-			while ((*alst)->next)
-			{
-				*alst = (*alst)->next;
-			}
-			last = *alst;
-			last->next = new;
-		}
-	}
+    while (stack != NULL)
+    {
+        printf("%d\n", stack->data);
+        printf("%d\n\n", stack->pos);
+        stack = stack->next;
+    }
 }
 
-t_num	**create_a(int len, int data)
+t_num	*create_a(int argc, char **argv)
 {
-	t_num	**stack_a;
-	int		i;
+	int	i;
+	t_num	*stack_a;
+	t_num	*tmp;
 
-	i = 1;
+	i = argc - 1;
+	stack_a = malloc(sizeof(t_num) * argc);
 	stack_a = NULL;
-	while (i <= len)
+	tmp = NULL;
+	while (i >= 0)
 	{
-		ft_lstadd(stack_a, ft_lstnew_int(data, i));
-		i++;
+		stack_a = tmp;
+		tmp = ft_lstnew_int(ft_atoi(argv[i]), i);
+		tmp->next = stack_a;
+		i--;
 	}
+	ft_afficher(stack_a);
 	return (stack_a);
 }
 
@@ -91,12 +87,6 @@ int	main(int argc, char **argv)
 		}
 		i++;
 	}
-	i = 1;
-	while (i < argc)
-	{
-		printf("argv[i] = %d", ft_atoi(argv[i]));
-		create_a(argc, ft_atoi(argv[i]));
-		i++;
-	}
+	create_a(argc, argv);
 	return (0);
 }

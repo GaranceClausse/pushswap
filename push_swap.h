@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:29:06 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/04 18:04:05 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/06 13:25:40 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ typedef struct	s_num
 }	t_num;
 
 t_num	*ft_lstnew_int(int data, int pos);
-t_num	**create_a(int len, int data);
+int	check_int(char *str);
+void ft_lstadd(t_num **alst, t_num *new);
 
 
 #endif
