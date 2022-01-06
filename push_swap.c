@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/06 14:11:19 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/06 16:04:13 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ t_num	*create_a(int argc, char **argv)
 
 	i = argc - 1;
 	stack_a = malloc(sizeof(t_num) * argc);
+	if (!stack_a)
+		return (NULL);
 	stack_a = NULL;
 	tmp = NULL;
 	while (i >= 0)
@@ -63,7 +65,7 @@ int	check_int(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '-')
+		if (str[i] == '-' || str[i] == '+')
 			i++;
 		if (!((ft_isdigit(str[i]) == 1) || (str[i] >= 9 && str[i] <= 13)
 		|| str[i] == ' '))
@@ -75,8 +77,21 @@ int	check_int(char *str)
 
 int	main(int argc, char **argv)
 {
-	int	i;
+	int		i;
+	char	**tmp;
 
+	i = 0;
+	if (argc == 2)
+	{
+		tmp = ft_split(argv[1], ' ');
+		while (tmp[i])
+		{
+
+			argv[i + 1] = tmp[i];
+			i++;
+		}
+		argc = i + 1;
+	}
 	i = 1;
 	while (i < argc)
 	{
