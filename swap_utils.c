@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:24:47 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/07 12:46:34 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/07 13:47:14 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,18 @@ t_num	*swap_a(t_num *stack_a)
 	return (ret);
 }
 
-t_stack	*push_a(t_stack *stack)
+t_stack	*push_a(t_num *a, t_num *b)
 {
 	int cpy;
+	t_stack	*stack;
 
+	stack = malloc(sizeof(t_num *) * (stack_size(a) + stack_size(b)));
+	stack->a = a;
+	stack->b = b;
 	cpy = stack->a->data;
 	stack->a->data = stack->b->data;
 	stack->b->data = cpy;
 	return (stack);
-
 }
 
 t_num	*rotate_a(t_num *stack_a)
@@ -58,21 +61,6 @@ t_num	*rotate_a(t_num *stack_a)
 	}
 	stack_a->data = tmp;
 	return (ret);
-}
-
-int	last_int(t_num *lst)
-{
-	t_num	*last;
-
-	last = lst;
-	if (lst)
-	{
-		while (last->next)
-		{
-			last = last->next;
-		}
-	}
-	return (last->data);
 }
 
 t_num		*rrotate_a(t_num *stack_a)
