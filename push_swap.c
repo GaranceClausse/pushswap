@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/06 20:15:35 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/07 12:41:58 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,6 @@ int	main(int argc, char **argv)
 	}
 	
 	ft_afficher(create_a(argc, argv));
-	ft_afficher(rotate_a(create_a(argc, argv)));
+	ft_afficher(rrotate_a(create_a(argc, argv)));
 	return (0);
 }
