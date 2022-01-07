@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:29:06 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/07 14:09:55 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/07 17:27:32 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ int		check_doubles(char **argv, char *num, int pos);
 void	ft_lstadd(t_num **alst, t_num *new);
 int		last_int(t_num *lst);
 int		stack_size(t_num *lst);
+
+int		stack_sorted(t_num *stack);
+int		place_num(t_num *b, int x);
+void	sort_b(t_num *a, t_num *b, int x);
+void	push_swap(t_num *a, t_num *b);
 
 t_num	*swap_a(t_num *stack_a);
 t_stack	*push_a(t_num *a, t_num *b);

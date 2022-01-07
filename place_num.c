@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 16:27:15 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/07 13:47:11 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/07 17:33:18 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int	place_num(t_num *b, int x)
 	while (x < b->data)
 	{
 		rang_x = i;
-		b->next;
+		b = b->next;
 		i++;
 	}
 	return (i);
 }
 
-void	sort_b(t_num *b, int x)
+void	sort_b(t_num *a, t_num *b, int x)
 {
 	int	i;
 	int	cpt;
@@ -51,17 +51,17 @@ void	sort_b(t_num *b, int x)
 
 	i = place_num(b, x);
 	cpt = i;
-	size = ft_lstsize(b);
-	if (i = 1)
-		pa;
-	else if (i = 2)
+	size = stack_size(b);
+	if (i == 1)
+		push_a(a, b);
+	else if (i == 2)
 	{
-		pa;
-		sa;
+		push_a(a, b);
+		swap_a(a);
 	}
-	else if (i = size + 1)
+	else if (i == size + 1)
 	{
-		pa;
+		push_a(a, b);
 		rotate_b(b);
 	}
 	else if (i >= 3 && i <= (size / 2))
@@ -71,7 +71,7 @@ void	sort_b(t_num *b, int x)
 			rotate_b(b);
 			i--;
 		}
-		pa;
+		push_a(a, b);
 		i = cpt;
 		while (i > 0)
 		{
@@ -79,9 +79,9 @@ void	sort_b(t_num *b, int x)
 			i--;
 		}
 	}
-	i = cpt;
 	else if (i >= 3 && i > (size / 2))
 	{
+		i = cpt;
 		cpt = size - i;
 		while (cpt > 0)
 		{
@@ -91,7 +91,7 @@ void	sort_b(t_num *b, int x)
 		cpt = size - i + 1;
 		while (cpt > 0)
 		{
-			pa;
+			push_a(a, b);
 			cpt--;
 		}
 	}
@@ -109,10 +109,10 @@ void	push_swap(t_num *a, t_num *b)
 				swap_a(a);
 		}
 	   else
-		   sort_b(b, a->data);
+		   sort_b(a, b, a->data);
 	}
 	while (b->next)
 	{
-		push_b(a, b);
+		push_a(b, a);
 	}
 }

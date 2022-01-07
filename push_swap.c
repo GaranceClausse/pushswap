@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/07 13:53:41 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/07 17:32:39 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,14 @@ t_num	*create_a(int argc, char **argv)
 
 int	check_int(char *str)
 {
-	int	i;
+	int			i;
+	long int	num;
 
 	i = 0;
+	num = ft_atoi(str);
+	printf("num = %ld\n", num);
+	if (num > 2147483647 || num < -2147483648)
+		return (0);
 	while (str[i])
 	{
 		if (str[i] == '-' || str[i] == '+')
@@ -100,8 +105,15 @@ int	main(int argc, char **argv)
 	int		i;
 	int		j;
 	char	**tmp;
+	t_num	*b;
 
 	i = 0;
+	if (argc < 2)
+	{
+		write (1, "Error\n", 6);
+		return (0);
+	}
+
 	if (argc == 2)
 	{
 		tmp = ft_split(argv[1], ' ');
@@ -124,7 +136,10 @@ int	main(int argc, char **argv)
 		}
 		i++;
 	}
+	b = malloc(sizeof(t_num) * argc);
 	ft_afficher(create_a(argc, argv));
-	ft_afficher(rrotate_a(create_a(argc, argv)));
+	/*
+	ft_afficher(rrotate_a(create_a(argc, argv)));*/
+	push_swap(create_a(argc, argv), b);
 	return (0);
 }

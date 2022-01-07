@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 14:04:08 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/07 14:08:50 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/07 17:36:10 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,6 @@ t_num	*swap_b(t_num *b)
 	b->data = tmp;
 	write (1, "sb\n", 3);
 	return (ret);
-}
-
-t_stack	*push_a(t_num *a, t_num *b)
-{
-	int		cpy;
-	t_stack	*stack;
-
-	stack = malloc(sizeof(t_num *) * (stack_size(a) + stack_size(b)));
-	stack->a = a;
-	stack->b = b;
-	cpy = stack->a->data;
-	stack->a->data = stack->b->data;
-	stack->b->data = cpy;
-	write (1, "pa\n", 3);
-	return (stack);
 }
 
 t_num	*rotate_b(t_num *b)
