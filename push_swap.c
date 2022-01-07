@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/07 12:41:58 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/07 13:53:41 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ t_num	*ft_lstnew_int(int data, int pos)
 	return (new_elem);
 }
 
-static void    ft_afficher(t_num *stack)
+static void	ft_afficher(t_num *stack)
 {
-    while (stack != NULL)
-    {
-        printf("%d\n", stack->data);
-        printf("%d\n\n", stack->pos);
-        stack = stack->next;
-    }
+	while (stack != NULL)
+	{
+		printf("%d\n", stack->data);
+		printf("%d\n\n", stack->pos);
+		stack = stack->next;
+	}
 }
 
 t_num	*create_a(int argc, char **argv)
 {
-	int	i;
+	int		i;
 	t_num	*stack_a;
 	t_num	*tmp;
 
@@ -67,11 +67,10 @@ int	check_int(char *str)
 		if (str[i] == '-' || str[i] == '+')
 			i++;
 		if (!((ft_isdigit(str[i]) == 1) || (str[i] >= 9 && str[i] <= 13)
-		|| str[i] == ' '))
+				|| str[i] == ' '))
 			return (0);
 		i++;
 	}
-
 	return (1);
 }
 
@@ -89,7 +88,7 @@ int	check_doubles(char **argv, char *num, int pos)
 	return (1);
 }
 
-void malloc_pbm(char **tmp, int j)
+void	malloc_pbm(char **tmp, int j)
 {
 	while (j > 0)
 		free(tmp[j--]);
@@ -99,7 +98,7 @@ void malloc_pbm(char **tmp, int j)
 int	main(int argc, char **argv)
 {
 	int		i;
-	int	j;
+	int		j;
 	char	**tmp;
 
 	i = 0;
@@ -108,7 +107,6 @@ int	main(int argc, char **argv)
 		tmp = ft_split(argv[1], ' ');
 		while (tmp[i])
 		{
-
 			argv[i + 1] = tmp[i];
 			i++;
 		}
@@ -126,7 +124,6 @@ int	main(int argc, char **argv)
 		}
 		i++;
 	}
-	
 	ft_afficher(create_a(argc, argv));
 	ft_afficher(rrotate_a(create_a(argc, argv)));
 	return (0);
