@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:29:06 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/07 12:41:40 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/07 13:30:47 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ typedef struct	s_num
 {
 	int				data;
 	int				pos;
-	struct s_num	*begin;
 	struct s_num	*next;
 }	t_num;
 

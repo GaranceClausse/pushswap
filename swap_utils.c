@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:24:47 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/07 12:45:28 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/07 12:46:34 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,38 +74,6 @@ int	last_int(t_num *lst)
 	}
 	return (last->data);
 }
-
-
-/*void	reverse_a(t_num *stack_a)
-{
-	int		tmp;
-	t_num	*cpy;
-
-	cpy = stack_a;
-	tmp = stack_a->data;
-	while (stack_a->next)
-	{
-		stack_a->data = cpy->data;
-		cpy = cpy->next;
-		stack_a = stack_a->next;
-	}
-	
-}
-
-t_num	*rrotate_a(t_num *stack_a)
-{
-	t_num	*cpy;
-	int		tmp;
-
-	cpy = stack_a;
-	while (cpy->next)
-		cpy = cpy->next;
-	tmp = cpy->data;
-	reverse_a(stack_a);
-	cpy = stack_a;
-	cpy->data = tmp;
-	return (stack_a);
-}*/
 
 t_num		*rrotate_a(t_num *stack_a)
 {
