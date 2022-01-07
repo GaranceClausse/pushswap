@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:29:06 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/07 13:56:05 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/07 14:09:55 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,10 @@ t_num	*swap_a(t_num *stack_a);
 t_stack	*push_a(t_num *a, t_num *b);
 t_num	*rotate_a(t_num *stack_a);
 t_num	*rrotate_a(t_num *stack_a);
+
+t_num	*swap_b(t_num *b);
+t_stack	*push_b(t_num *a, t_num *b);
+t_num	*rotate_b(t_num *b);
+t_num	*rrotate_b(t_num *b);
 
 #endif
