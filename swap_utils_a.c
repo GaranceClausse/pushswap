@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:24:47 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/14 12:00:23 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/14 13:36:07 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,11 @@ t_stack	*rotate_a(t_stack *stack_a)
 		
 	i = 0;
 	tmp = stack_a->tab[0];
-	while (stack_a->tab[i++])
+	while (stack_a->tab[i + 1])
+	{
 		stack_a->tab[i] = stack_a->tab[i + 1];
+		i++;
+	}
 	stack_a->tab[i] = tmp;
 	write (1, "ra\n", 3);
 	return (stack_a);
@@ -58,11 +61,14 @@ t_stack	*rrotate_a(t_stack *stack_a)
 {
 	int	i;
 	int	tmp;
-	
-	i = stack_a->tab[stack_a->size];
+
+	i = stack_a->size;
 	tmp = stack_a->tab[i];
 	while (i > 0)
+	{
 		stack_a->tab[i]  = stack_a->tab[i - 1];
+		i--;
+	}
 	stack_a->tab[0] = tmp;
 	return (stack_a);
 }

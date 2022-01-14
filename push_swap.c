@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/14 13:15:56 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/14 13:35:48 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_stack	*create_a(int argc, char **argv)
 	stack_a->tab = malloc(sizeof(int) * (argc));
 	if (!stack_a->tab)
 		return (NULL);
-	stack_a->size = argc - 1;
+	stack_a->size = i;
 	stack_a->tab[argc - 1] = '\0';
 	while (i >= 0)
 	{
@@ -128,9 +128,12 @@ int	main(int argc, char **argv)
 	}
 //	a = malloc(sizeof(t_stack *));
 	a = (create_a(argc, argv));
+	printf("a = \n");
 	ft_afficher(a);
-	/*
-	ft_afficher(rrotate_a(create_a(argc, argv)));*/
-	//push_swap(create_a(argc, argv), b);
+	printf("rrotate = \n");
+	ft_afficher(rrotate_a(a));
+	printf("rotate = \n");
+	ft_afficher(rotate_a(a));
+		//push_swap(create_a(argc, argv), b);
 	return (0);
 }
