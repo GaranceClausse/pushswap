@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/14 13:35:48 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/14 14:01:04 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_stack	*create_a(int argc, char **argv)
 	stack_a = malloc(sizeof(t_stack));
 	if (!stack_a)
 		return (NULL);
-	stack_a->tab = malloc(sizeof(int) * (argc));
+	stack_a->tab = malloc(sizeof(int) * (argc - 1));
 	if (!stack_a->tab)
 		return (NULL);
 	stack_a->size = i;
@@ -45,6 +45,22 @@ t_stack	*create_a(int argc, char **argv)
 		i--;
 	}
 	return (stack_a);
+}
+
+t_stack	*init_b(int argc)
+{
+	t_stack	*stack_b;
+	
+	stack_b = malloc(sizeof(t_stack));
+	if (!stack_b)
+		return (NULL);
+	stack_b->tab = calloc((argc - 1), sizeof(int));
+	if (!stack_b->tab)
+		return (NULL);
+	stack_b->size = 0;
+	stack_b->tab = NULL;
+	return (stack_b);
+
 }
 
 int	check_int(char *str)
@@ -95,7 +111,7 @@ int	main(int argc, char **argv)
 	int		j;
 	char	**tmp;
 	t_stack	*a;
-//	t_stack	*b;
+	t_stack	*b;
 
 	i = 0;
 	if (argc < 2)
@@ -128,12 +144,15 @@ int	main(int argc, char **argv)
 	}
 //	a = malloc(sizeof(t_stack *));
 	a = (create_a(argc, argv));
+	b = init_b(argc);
 	printf("a = \n");
 	ft_afficher(a);
-	printf("rrotate = \n");
-	ft_afficher(rrotate_a(a));
-	printf("rotate = \n");
-	ft_afficher(rotate_a(a));
+//	printf("rrotate = \n");
+//	ft_afficher(rrotate_a(a));
+//	printf("rotate = \n");
+//	ft_afficher(rotate_a(a));
+	push_b(a, b);
+	ft_afficher(b);
 		//push_swap(create_a(argc, argv), b);
 	return (0);
 }

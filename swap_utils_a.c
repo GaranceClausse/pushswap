@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:24:47 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/14 13:36:07 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/14 14:05:40 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,7 @@ t_stack	*swap_a(t_stack *stack_a)
 	write (1, "sa\n", 3);
 	return (stack_a);
 }
-/*
-t_stack	*push_a(t_stack *a, t_stack *b)
-{
-	int		cpy;
-	t_stack	*stack;
 
-	stack = malloc(sizeof(t_stack *) * (stack_size(a) + stack_size(b)));
-	stack->a = a;
-	stack->b = b;
-	cpy = stack->a->data;
-	stack->a->data = stack->b->data;
-	stack->b->data = cpy;
-	write (1, "pa\n", 3);
-	return (stack);
-}
-*/
 t_stack	*rotate_a(t_stack *stack_a)
 {
 	int	tmp;
@@ -72,3 +57,30 @@ t_stack	*rrotate_a(t_stack *stack_a)
 	stack_a->tab[0] = tmp;
 	return (stack_a);
 }
+
+void	push_b(t_stack *a, t_stack *b)
+{
+	int		i;
+	
+	i = b->size + 1;
+	printf("i = %d\n", i);
+	while (i > 0)
+	{
+		printf("ca rentre");
+		b->tab[i] = b->tab[i - 1];
+		i--;
+	}
+	printf("ici k");
+	b->tab[0] = a->tab[0];
+	printf("b tab[0] = %d\n", b->tab[0]);
+	b->size += 1;
+	i = 0;
+	while (i < a->size)
+	{
+		a->tab[i] = a->tab[i + 1];
+		i++;
+	}
+	a->size -= 1;
+}
+
+

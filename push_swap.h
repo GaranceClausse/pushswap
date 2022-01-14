@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:29:06 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/14 12:51:53 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/14 14:03:02 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ typedef struct s_stack
 	int	*tab;
 }	t_stack;
 
+
 int		check_int(char *str);
 int		check_doubles(char **argv, char *num, int pos);
 t_stack	*create_a(int argc, char **argv);
+t_stack	*init_b(int argc);
 
 int		stack_sorted(t_stack *stack);
 int		place_num(t_stack *b, int x);
@@ -31,7 +33,7 @@ void	sort_b(t_stack *a, t_stack *b, int x);
 void	push_swap(t_stack *a, t_stack *b);
 
 t_stack	*swap_a(t_stack *stack_a);
-t_stack	*push_a(t_stack *a, t_stack *b);
+void	push_b(t_stack *a, t_stack *b);
 t_stack	*rotate_a(t_stack *stack_a);
 t_stack	*rrotate_a(t_stack *stack_a);
 /*
