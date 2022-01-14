@@ -6,52 +6,42 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/07 17:32:39 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/14 13:14:35 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_num	*ft_lstnew_int(int data, int pos)
+static void	ft_afficher(t_stack *stack)
 {
-	t_num	*new_elem;
+	int	i;
 
-	new_elem = malloc(sizeof(t_num));
-	if (!new_elem)
-		return (NULL);
-	new_elem->data = data;
-	new_elem->pos = pos;
-	new_elem->next = NULL;
-	return (new_elem);
-}
-
-static void	ft_afficher(t_num *stack)
-{
-	while (stack != NULL)
+	i = 0;
+	while (stack->tab[i])
 	{
-		printf("%d\n", stack->data);
-		printf("%d\n\n", stack->pos);
-		stack = stack->next;
+		printf("%d\n", stack->tab[i]);
+		i++;
 	}
 }
 
-t_num	*create_a(int argc, char **argv)
+t_stack	*create_a(int argc, char **argv)
 {
 	int		i;
-	t_num	*stack_a;
-	t_num	*tmp;
-
-	i = argc - 1;
-	stack_a = malloc(sizeof(t_num) * argc);
+	t_stack	*stack_a;
+	
+	i = argc - 2;
+	stack_a = malloc(sizeof(t_stack));
 	if (!stack_a)
 		return (NULL);
-	stack_a = NULL;
-	tmp = NULL;
+	stack_a->tab = malloc(sizeof(int) * (argc));
+	if (!stack_a->tab)
+		return (NULL);
+	stack_a->size = argc - 1;
+	stack_a->tab[argc - 1] = '\0';
 	while (i >= 0)
 	{
-		stack_a = tmp;
-		tmp = ft_lstnew_int(ft_atoi(argv[i]), i);
-		tmp->next = stack_a;
+		stack_a->tab[i] = ft_atoi(argv[i + 1]);
+		printf("tab[i] = %d\n", stack_a->tab[i]);
 		i--;
 	}
 	return (stack_a);
@@ -64,7 +54,6 @@ int	check_int(char *str)
 
 	i = 0;
 	num = ft_atoi(str);
-	printf("num = %ld\n", num);
 	if (num > 2147483647 || num < -2147483648)
 		return (0);
 	while (str[i])
@@ -105,7 +94,8 @@ int	main(int argc, char **argv)
 	int		i;
 	int		j;
 	char	**tmp;
-	t_num	*b;
+//	t_stack	*a;
+//	t_stack	*b;
 
 	i = 0;
 	if (argc < 2)
@@ -125,21 +115,22 @@ int	main(int argc, char **argv)
 		argc = i + 1;
 		j = i + 1;
 	}
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (i < argc - 1)
 	{
+		i++;
 		if (check_int(argv[i]) == 0 || check_doubles(argv, argv[i], i) == 0)
 		{
 			write (1, "Error\n", 6);
 			malloc_pbm(tmp, j);
 			return (0);
 		}
-		i++;
 	}
-	b = malloc(sizeof(t_num) * argc);
+//	a = malloc(sizeof(t_stack *));
+//	a = (create_a(argc, argv));
 	ft_afficher(create_a(argc, argv));
 	/*
 	ft_afficher(rrotate_a(create_a(argc, argv)));*/
-	push_swap(create_a(argc, argv), b);
+	//push_swap(create_a(argc, argv), b);
 	return (0);
 }

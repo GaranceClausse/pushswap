@@ -6,36 +6,31 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:24:47 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/07 14:02:23 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/14 12:00:23 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_num	*swap_a(t_num *stack_a)
+t_stack	*swap_a(t_stack *stack_a)
 {
 	int		tmp;
-	t_num	*cpy;
-	t_num	*ret;
+	t_stack	*cpy;
 
 	cpy = stack_a;
-	ret = stack_a;
-	tmp = cpy->data;
-	cpy->data = stack_a->data;
-	cpy = cpy->next;
-	stack_a->data = cpy->data;
-	stack_a = stack_a->next;
-	stack_a->data = tmp;
+	tmp = cpy->tab[0];
+	stack_a->tab[0] = stack_a->tab[1];
+	stack_a->tab[1] = tmp;
 	write (1, "sa\n", 3);
-	return (ret);
+	return (stack_a);
 }
-
-t_stack	*push_a(t_num *a, t_num *b)
+/*
+t_stack	*push_a(t_stack *a, t_stack *b)
 {
 	int		cpy;
 	t_stack	*stack;
 
-	stack = malloc(sizeof(t_num *) * (stack_size(a) + stack_size(b)));
+	stack = malloc(sizeof(t_stack *) * (stack_size(a) + stack_size(b)));
 	stack->a = a;
 	stack->b = b;
 	cpy = stack->a->data;
@@ -44,49 +39,30 @@ t_stack	*push_a(t_num *a, t_num *b)
 	write (1, "pa\n", 3);
 	return (stack);
 }
-
-t_num	*rotate_a(t_num *stack_a)
+*/
+t_stack	*rotate_a(t_stack *stack_a)
 {
-	int		tmp;
-	t_num	*cpy;
-	t_num	*ret;
-
-	ret = stack_a;
-	cpy = stack_a;
-	tmp = stack_a->data;
-	cpy = cpy->next;
-	while (stack_a->next)
-	{
-		stack_a->data = cpy->data;
-		stack_a = stack_a->next;
-		cpy = cpy->next;
-	}
-	stack_a->data = tmp;
+	int	tmp;
+	int	i;
+		
+	i = 0;
+	tmp = stack_a->tab[0];
+	while (stack_a->tab[i++])
+		stack_a->tab[i] = stack_a->tab[i + 1];
+	stack_a->tab[i] = tmp;
 	write (1, "ra\n", 3);
-	return (ret);
+	return (stack_a);
 }
 
-t_num	*rrotate_a(t_num *stack_a)
+t_stack	*rrotate_a(t_stack *stack_a)
 {
-	t_num	*head;
-	t_num	*tmp;
-
-	if (stack_a->next)
-	{
-		head = stack_a;
-		while (stack_a->next->next)
-		{
-			stack_a = stack_a->next;
-			stack_a->pos = stack_a->pos + 1;
-		}
-		tmp = stack_a->next;
-		stack_a->next = NULL;
-		stack_a = head;
-		stack_a->pos = stack_a->pos + 1;
-		tmp->next = stack_a;
-		stack_a = tmp;
-		stack_a->pos = 1;
-	}
-	write (1, "rra\n", 4);
+	int	i;
+	int	tmp;
+	
+	i = stack_a->tab[stack_a->size];
+	tmp = stack_a->tab[i];
+	while (i > 0)
+		stack_a->tab[i]  = stack_a->tab[i - 1];
+	stack_a->tab[0] = tmp;
 	return (stack_a);
 }

@@ -6,27 +6,26 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 16:27:15 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/07 17:33:18 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/14 12:39:42 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	stack_sorted(t_num *stack)
+int	stack_sorted(t_stack *stack)
 {
-	while (stack->next)
-	{
-		if (stack->data > stack->next->data)
-			return (0);
-		stack = stack->next;
-	}
-	if (stack->next == NULL)
+	int	i;
+
+	i = 0;
+	while(stack->tab[i] < stack->tab[i + 1] && stack->tab[i])
+		i++;
+	if (i == stack->tab[stack->size])
 		return (1);
 	else
 		return (0);
 }
-
-int	place_num(t_num *b, int x)
+/*
+int	place_num(t_stack *b, int x)
 {
 	int	i;
 	int	rang_x;
@@ -43,7 +42,7 @@ int	place_num(t_num *b, int x)
 	return (i);
 }
 
-void	sort_b(t_num *a, t_num *b, int x)
+void	sort_b(t_stack *a, t_stack *b, int x)
 {
 	int	i;
 	int	cpt;
@@ -97,7 +96,7 @@ void	sort_b(t_num *a, t_num *b, int x)
 	}
 }
 
-void	push_swap(t_num *a, t_num *b)
+void	push_swap(t_stack *a, t_stack *b)
 {
 	while (stack_sorted(a) == 0)
 	{
@@ -115,4 +114,4 @@ void	push_swap(t_num *a, t_num *b)
 	{
 		push_a(b, a);
 	}
-}
+}*/
