@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:24:47 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/14 14:05:40 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/17 19:03:35 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,29 +58,30 @@ t_stack	*rrotate_a(t_stack *stack_a)
 	return (stack_a);
 }
 
-void	push_b(t_stack *a, t_stack *b)
+void	push_b(t_stack *a)
 {
-	int		i;
-	
-	i = b->size + 1;
-	printf("i = %d\n", i);
-	while (i > 0)
-	{
-		printf("ca rentre");
-		b->tab[i] = b->tab[i - 1];
-		i--;
-	}
-	printf("ici k");
-	b->tab[0] = a->tab[0];
-	printf("b tab[0] = %d\n", b->tab[0]);
-	b->size += 1;
+	int	tmp;
+	int	i;
+		
 	i = 0;
-	while (i < a->size)
+	tmp = a->tab[0];
+	printf("tab[0] = %d\n", tmp);
+	printf("a->size avant push_b = %d\n", a->size);
+
+	while (i <= a->size)
 	{
 		a->tab[i] = a->tab[i + 1];
 		i++;
 	}
+	a->tab[a->size] = tmp;
 	a->size -= 1;
+	printf("a->size = %d\n", a->size);
+	a->size_b += 1;
+	printf("b->size = %d\n", a->size_b);
+	printf("tab[0] de b = %d\n", a->tab[(a->size - a->size_b + 1)]);
+
+
+	
 }
 
 

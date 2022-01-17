@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/14 14:01:04 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/17 19:01:56 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_stack	*create_a(int argc, char **argv)
 	if (!stack_a->tab)
 		return (NULL);
 	stack_a->size = i;
+	stack_a->size_b = -1;
 	stack_a->tab[argc - 1] = '\0';
 	while (i >= 0)
 	{
@@ -147,12 +148,18 @@ int	main(int argc, char **argv)
 	b = init_b(argc);
 	printf("a = \n");
 	ft_afficher(a);
-//	printf("rrotate = \n");
-//	ft_afficher(rrotate_a(a));
+	printf("rrotate = \n");
+	ft_afficher(rrotate_a(a));
 //	printf("rotate = \n");
 //	ft_afficher(rotate_a(a));
-	push_b(a, b);
-	ft_afficher(b);
+//
+	printf("push_b = \n");
+
+	push_b(a);
+	ft_afficher(a);
+	push_b(a);
+	ft_afficher(a);
+
 		//push_swap(create_a(argc, argv), b);
 	return (0);
 }
