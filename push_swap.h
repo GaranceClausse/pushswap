@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:29:06 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/14 14:03:02 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/17 18:49:07 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct s_stack
 {
 	int	size;
+	int	size_b;
 	int	*tab;
 }	t_stack;
 
@@ -33,12 +34,12 @@ void	sort_b(t_stack *a, t_stack *b, int x);
 void	push_swap(t_stack *a, t_stack *b);
 
 t_stack	*swap_a(t_stack *stack_a);
-void	push_b(t_stack *a, t_stack *b);
+void	push_b(t_stack *a);
 t_stack	*rotate_a(t_stack *stack_a);
 t_stack	*rrotate_a(t_stack *stack_a);
 /*
 t_stack	*swap_b(t_stack *b);
-t_stack	*push_b(t_stack *a, t_stack *b);
+t_stack	*push_a(t_stack *a);
 t_stack	*rotate_b(t_stack *b);
 t_stack	*rrotate_b(t_stack *b);i*/
 
