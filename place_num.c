@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 16:27:15 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/21 19:00:50 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/21 19:21:02 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,13 @@ int	stack_sorted(t_stack *stack)
 	int	i;
 
 	i = 0;
-	printf("segv\n");
-	while( i <= stack->size)
+	while( i < stack->size)
 	{
-		printf("stack->tab[i] = %d\n", stack->tab[i]);
-		printf("stack->tab[i + 1] = %d\n", stack->tab[i + 1]);
-
 		if (stack->tab[i] > stack->tab[i + 1])
 			return (0);
 		else
 			i++;
 	}
-	printf("i = %d\n", i);
-	printf("size = %d\n", stack->size);
 	return (1);
 }
 
@@ -120,12 +114,16 @@ void	push_swap(t_stack *stack)
 //	push_b(stack);
 	if (stack_sorted(stack) == 1)
 	{
-		printf("victoryy");
+		printf("victoryy\n");
 		return ;
 	}
 	if (stack_sorted(stack) == 0)
 	{
-		printf("stack not sorted\n");
+		printf("stack not sorted\n ");
+		if (stack->size < stack->start_b)
+			push_b(stack);
+		printf("tab[0] = %d\n", stack->tab[0]);
+		printf("tab[0start_b] = %d\n", stack->tab[stack->start_b]);
 		if(stack->tab[0] < stack->tab[stack->start_b])
 		{
 			if (stack->tab[0] > stack->tab[stack->size])
