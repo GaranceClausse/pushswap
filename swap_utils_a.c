@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_utils.c                                       :+:      :+:    :+:   */
+/*   swap_utils_a.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:24:47 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/17 19:03:35 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/21 17:51:23 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*swap_a(t_stack *stack_a)
+void	swap_a(t_stack *stack_a)
 {
 	int		tmp;
 	t_stack	*cpy;
@@ -22,10 +22,9 @@ t_stack	*swap_a(t_stack *stack_a)
 	stack_a->tab[0] = stack_a->tab[1];
 	stack_a->tab[1] = tmp;
 	write (1, "sa\n", 3);
-	return (stack_a);
 }
 
-t_stack	*rotate_a(t_stack *stack_a)
+void	rotate_a(t_stack *stack_a)
 {
 	int	tmp;
 	int	i;
@@ -39,10 +38,9 @@ t_stack	*rotate_a(t_stack *stack_a)
 	}
 	stack_a->tab[i] = tmp;
 	write (1, "ra\n", 3);
-	return (stack_a);
 }
 
-t_stack	*rrotate_a(t_stack *stack_a)
+void	rrotate_a(t_stack *stack_a)
 {
 	int	i;
 	int	tmp;
@@ -55,7 +53,6 @@ t_stack	*rrotate_a(t_stack *stack_a)
 		i--;
 	}
 	stack_a->tab[0] = tmp;
-	return (stack_a);
 }
 
 void	push_b(t_stack *a)
@@ -65,9 +62,6 @@ void	push_b(t_stack *a)
 		
 	i = 0;
 	tmp = a->tab[0];
-	printf("tab[0] = %d\n", tmp);
-	printf("a->size avant push_b = %d\n", a->size);
-
 	while (i <= a->size)
 	{
 		a->tab[i] = a->tab[i + 1];
@@ -75,13 +69,5 @@ void	push_b(t_stack *a)
 	}
 	a->tab[a->size] = tmp;
 	a->size -= 1;
-	printf("a->size = %d\n", a->size);
-	a->size_b += 1;
-	printf("b->size = %d\n", a->size_b);
-	printf("tab[0] de b = %d\n", a->tab[(a->size - a->size_b + 1)]);
-
-
-	
+	a->start_b -= 1;
 }
-
-

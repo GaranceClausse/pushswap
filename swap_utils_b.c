@@ -6,72 +6,71 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 14:04:08 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/07 17:36:10 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/21 15:40:49 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_num	*swap_b(t_num *b)
+t_stack	*swap_b(t_stack *stack)
 {
 	int		tmp;
-	t_num	*cpy;
-	t_num	*ret;
+	t_stack	*cpy;
 
-	cpy = b;
-	ret = b;
-	tmp = cpy->data;
-	cpy->data = b->data;
-	cpy = cpy->next;
-	b->data = cpy->data;
-	b = b->next;
-	b->data = tmp;
+	cpy = stack;
+	tmp = cpy->tab[stack->start_b];
+	stack->tab[stack->start_b] = stack->tab[stack->start_b + 1];
+	stack->tab[stack->start_b + 1] = tmp;
 	write (1, "sb\n", 3);
-	return (ret);
+	return (stack);
 }
 
-t_num	*rotate_b(t_num *b)
+t_stack	*rotate_b(t_stack *stack)
 {
-	int		tmp;
-	t_num	*cpy;
-	t_num	*ret;
-
-	ret = b;
-	cpy = b;
-	tmp = b->data;
-	cpy = cpy->next;
-	while (b->next)
+	int	tmp;
+	int	i;
+		
+	i = stack->start_b;
+	tmp = stack->tab[stack->start_b];
+	while (stack->tab[i + 1])
 	{
-		b->data = cpy->data;
-		b = b->next;
-		cpy = cpy->next;
+		stack->tab[i] = stack->tab[i + 1];
+		i++;
 	}
-	b->data = tmp;
+	stack->tab[i] = tmp;
 	write (1, "rb\n", 3);
-	return (ret);
+	return (stack);
 }
 
-t_num	*rrotate_b(t_num *b)
+t_stack	*rrotate_b(t_stack *stack)
 {
-	t_num	*head;
-	t_num	*tmp;
+	int	i;
+	int	tmp;
 
-	if (b->next)
+	i = stack->size + stack->start_b;
+	tmp = stack->tab[i];
+	while (i > stack->start_b)
 	{
-		head = b;
-		while (b->next->next)
-		{
-			b = b->next;
-			b->pos = b->pos + 1;
-		}
-		tmp = b->next;
-		b->next = NULL;
-		b = head;
-		b->pos = b->pos + 1;
-		tmp->next = b;
-		b = tmp;
-		b->pos = 1;
+		stack->tab[i]  = stack->tab[i - 1];
+		i--;
 	}
-	write (1, "rrb\n", 4);
-	return (b);
+	stack->tab[stack->start_b] = tmp;
+	return (stack);
+}
+
+void	push_a(t_stack *stack)
+{
+	int	tmp;
+	int	i;
+		
+	i = 0;
+	tmp = stack->tab[stack->start_b];
+	while (i <= stack->start_b)
+	{
+		stack->tab[i] = stack->tab[i + 1];
+		i++;
+	}
+	stack->tab[0] = tmp;
+	stack->size += 1;
+	stack->start_b += 1;
 }

@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/17 19:01:56 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/21 18:38:35 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,51 +17,31 @@ static void	ft_afficher(t_stack *stack)
 	int	i;
 
 	i = 0;
-	while (stack->tab[i])
+	while (i <= stack->size)
 	{
 		printf("%d\n", stack->tab[i]);
 		i++;
 	}
 }
 
-t_stack	*create_a(int argc, char **argv)
+t_stack	*create_a(int argc, char **argv, t_stack *stack)
 {
 	int		i;
-	t_stack	*stack_a;
 	
 	i = argc - 2;
-	stack_a = malloc(sizeof(t_stack));
-	if (!stack_a)
+	stack->tab = malloc(sizeof(int) * (argc));
+	if (!stack->tab)
 		return (NULL);
-	stack_a->tab = malloc(sizeof(int) * (argc - 1));
-	if (!stack_a->tab)
-		return (NULL);
-	stack_a->size = i;
-	stack_a->size_b = -1;
-	stack_a->tab[argc - 1] = '\0';
+	stack->size = i;
+	printf("i = %d et size = %d\n", i , stack->size);
+	stack->start_b = i + 1;
 	while (i >= 0)
 	{
-		stack_a->tab[i] = ft_atoi(argv[i + 1]);
-		printf("tab[i] = %d\n", stack_a->tab[i]);
+		stack->tab[i] = ft_atoi(argv[i + 1]);
+		//printf("tab[i] = %d\n", stack->tab[i]);
 		i--;
 	}
-	return (stack_a);
-}
-
-t_stack	*init_b(int argc)
-{
-	t_stack	*stack_b;
-	
-	stack_b = malloc(sizeof(t_stack));
-	if (!stack_b)
-		return (NULL);
-	stack_b->tab = calloc((argc - 1), sizeof(int));
-	if (!stack_b->tab)
-		return (NULL);
-	stack_b->size = 0;
-	stack_b->tab = NULL;
-	return (stack_b);
-
+	return (stack);
 }
 
 int	check_int(char *str)
@@ -111,8 +91,7 @@ int	main(int argc, char **argv)
 	int		i;
 	int		j;
 	char	**tmp;
-	t_stack	*a;
-	t_stack	*b;
+	t_stack	*stack;
 
 	i = 0;
 	if (argc < 2)
@@ -143,23 +122,12 @@ int	main(int argc, char **argv)
 			return (0);
 		}
 	}
-//	a = malloc(sizeof(t_stack *));
-	a = (create_a(argc, argv));
-	b = init_b(argc);
-	printf("a = \n");
-	ft_afficher(a);
-	printf("rrotate = \n");
-	ft_afficher(rrotate_a(a));
-//	printf("rotate = \n");
-//	ft_afficher(rotate_a(a));
-//
-	printf("push_b = \n");
-
-	push_b(a);
-	ft_afficher(a);
-	push_b(a);
-	ft_afficher(a);
-
-		//push_swap(create_a(argc, argv), b);
+	stack = malloc(sizeof(t_stack));
+	if (!stack)
+		return (0);
+	stack = create_a(argc, argv, stack);
+	ft_afficher(stack);
+	push_swap(stack);
+	ft_afficher(stack);
 	return (0);
 }
