@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/24 17:28:57 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/24 19:10:16 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,49 +44,12 @@ t_stack	*create_a(int argc, char **argv, t_stack *stack)
 	return (stack);
 }
 
-int	check_int(char *str)
-{
-	int			i;
-	long int	num;
-
-	i = 0;
-	num = ft_atoi(str);
-	if (num > 2147483647 || num < -2147483648)
-		return (0);
-	while (str[i])
-	{
-		if (str[i] == '-' || str[i] == '+')
-			i++;
-		if (!((ft_isdigit(str[i]) == 1) || (str[i] >= 9 && str[i] <= 13)
-				|| str[i] == ' '))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	check_doubles(char **argv, char *num, int pos)
-{
-	int	i;
-
-	i = 1;
-	while (i < pos - 1)
-	{
-		if (ft_atoi(argv[i]) == ft_atoi(num))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 void	malloc_pbm(char **tmp, int j)
 {
 	while (j >= 0)
 		free(tmp[j--]);
 	free (tmp);
 }
-
-
 
 int	main(int argc, char **argv)
 {
@@ -133,8 +96,11 @@ int	main(int argc, char **argv)
 			return (0);
 	if (argc >= 4)
 		sort_three(stack);
-//	else if (argc > 4 && argc < 100)
+	else if (argc > 4 && argc < 99)
 		push_swap_small(stack);
+	ft_afficher(stack);
+	if (argc > 99 && argc < 500)
+		push_swap(stack);
 	ft_afficher(stack);
 	return (0);
 }

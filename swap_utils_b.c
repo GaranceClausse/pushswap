@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 14:04:08 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/24 12:06:38 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/24 19:03:50 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	rrotate_b(t_stack *stack)
 	int	i;
 	int	tmp;
 
-	i = stack->start_b;
+	i = stack->size;
 	tmp = stack->tab[i];
 	while (i > stack->start_b)
 	{
