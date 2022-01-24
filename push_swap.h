@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:29:06 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/24 11:53:52 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/24 12:06:21 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void	push_b(t_stack *stack);
 void	rotate_a(t_stack *stack);
 void	rrotate_a(t_stack *stack);
 
-t_stack	*swap_b(t_stack *stack);
+void	swap_b(t_stack *stack);
 void	push_a(t_stack *stack);
-t_stack	*rotate_b(t_stack *stack);
-t_stack	*rrotate_b(t_stack *stack);
+void	rotate_b(t_stack *stack);
+void	rrotate_b(t_stack *stack);
 
 void	sort_three(t_stack *stack);
 void	sort_five(t_stack *stack);

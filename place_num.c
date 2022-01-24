@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 16:27:15 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/24 11:59:26 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/24 13:19:15 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,14 @@ int	place_num(t_stack *stack, int x)
 {
 	int	i;
 
+	i = 0;
 	if (x > stack->tab[stack->start_b])
 		i = 1;
-	while (x < stack->tab[stack->start_b])
-		 i++;
+	else
+	{
+		while (x < stack->tab[stack->start_b + i])
+			 i++;
+	}
 	return (i);
 }
 
@@ -63,28 +67,36 @@ void	sort_b(t_stack *stack, int x)
 	cpt = i;
 	size = stack->size - stack->start_b;
 	if (i == 1)
+	{
+		printf("i = %d\n", i);
 		push_b(stack);
+	}
 	else if (i == 2)
 	{
+		printf("i = %d\n", i);
+
 		push_b(stack);
-		swap_a(stack);
+		swap_b(stack);
 	}
 	else if (i == size + 1)
 	{
-		push_a(stack);
+		printf("i = %d\n", i);
+		push_b(stack);
 		rotate_b(stack);
 	}
 	else if (i >= 3 && i <= (size / 2))
 	{
 		while (i > 0)
 		{
+			printf("i = %d\n", i);
 			rotate_b(stack);
 			i--;
 		}
-		push_a(stack);
+		push_b(stack);
 		i = cpt;
 		while (i > 0)
 		{
+			printf("i = %d\n", i);
 			rrotate_b(stack);
 			i--;
 		}
@@ -101,7 +113,7 @@ void	sort_b(t_stack *stack, int x)
 		cpt = size - i + 1;
 		while (cpt > 0)
 		{
-			push_a(stack);
+			push_b(stack);
 			cpt--;
 		}
 	}
@@ -123,6 +135,7 @@ static void	ft_afficher(t_stack *stack)
 void	push_swap(t_stack *stack)
 {
 	int	i;
+//	int	j;
 
 	i = stack->start_b;
 	printf("start_b dans push_swap =  %d\n", i);
@@ -132,32 +145,18 @@ void	push_swap(t_stack *stack)
 		printf("victoryy\n");
 		return ;
 	}
-	while (stack_sorted(stack) == 0)
+	while (stack_sorted(stack) == 0 || stack->tab[0] < stack->tab[stack->start_b])
 	{
-		printf("stack not sorted\n ");
-		if (stack->size < stack->start_b)
-			push_b(stack);
-		printf("tab[0] = %d\n", stack->tab[0]);
-		printf("tab[start_b] = %d\n", stack->tab[stack->start_b]);
-		if(stack->tab[0] < stack->tab[stack->start_b])
-		{
-			if (stack->tab[0] > stack->tab[stack->size])
-				rotate_a(stack);
-			if (stack->tab[0] > stack->tab[1])
-				swap_a(stack);
-		}
+		if (stack->tab[0] > stack->tab[stack->start_b - 1])
+			rotate_a(stack);
+		if (stack->tab[0] > stack->tab[1])
+			swap_a(stack);
 		else
 		{
-		   printf("on est la\n");
 		   sort_b(stack, stack->tab[0]);
+		   printf("tab[0] = %d, tab[1] = %d, tab[2] = %d, tab[3] = %d, tab[4] = %d, tab[5] = %d, tab[6] = %d, tab[7] = %d\n", stack->tab[0], stack->tab[1],  stack->tab[2], stack->tab[3],  stack->tab[4], stack->tab[5],  stack->tab[6], stack->tab[7]);
 		}
 
-	}
-	while (stack->tab[i])
-	{
-		printf("ici?");
-		push_b(stack);
-		i++;
 	}
 	ft_afficher(stack);
 }
@@ -170,17 +169,9 @@ void	sort_three(t_stack *stack)
 	{
 		if (stack->tab[1] > stack->tab[2] || (stack->tab[0] > stack->tab[1]
 			&& stack->tab[0] > stack->tab[2]))
-		{
 			rotate_a(stack);
-			printf("tab[0] = %d, tab[1] = %d, tab[2] = %d,tab[3] = %d,tab[4] = %d,\n", stack->tab[0], stack->tab[1], stack->tab[2], stack->tab[3], stack->tab[4]);
-		}
-
 		if (stack->tab[0] > stack->tab[1])
-		{
 		       swap_a(stack);
-			printf("tab[0] = %d, tab[1] = %d, tab[2] = %d,tab[3] = %d,tab[4] = %d,\n", stack->tab[0], stack->tab[1], stack->tab[2], stack->tab[3], stack->tab[4]);
-		}
-
 	}
 	else if (stack->tab[2] > stack->tab[0])
 	{
@@ -198,21 +189,15 @@ void	sort_five(t_stack *stack)
 	if (stack_reverse_sorted(stack) == 1)
 	{
 		rrotate_a(stack);
-		printf("tab[0] = %d, tab[1] = %d, tab[2] = %d,tab[3] = %d,tab[4] = %d,\n", stack->tab[0], stack->tab[1], stack->tab[2], stack->tab[3], stack->tab[4]);
-
 		push_b(stack);
-		printf("tab[0] = %d, tab[1] = %d, tab[2] = %d,tab[3] = %d,tab[4] = %d,\n", stack->tab[0], stack->tab[1], stack->tab[2], stack->tab[3], stack->tab[4]);
-
 		rrotate_a(stack);
 		push_b(stack);
-		printf("tab[0] = %d, tab[1] = %d, tab[2] = %d,tab[3] = %d,tab[4] = %d,\n", stack->tab[0], stack->tab[1], stack->tab[2], stack->tab[3], stack->tab[4]);
-
 		sort_three(stack);
 		push_a(stack);
-		printf("tab[0] = %d, tab[1] = %d, tab[2] = %d,tab[3] = %d,tab[4] = %d,\n", stack->tab[0], stack->tab[1], stack->tab[2], stack->tab[3], stack->tab[4]);
 		push_a(stack);
-		printf("tab[0] = %d, tab[1] = %d, tab[2] = %d,tab[3] = %d,tab[4] = %d,\n", stack->tab[0], stack->tab[1], stack->tab[2], stack->tab[3], stack->tab[4]);
 	}
-
-
+	else
+	{
+		push_swap(stack);
+	}
 }

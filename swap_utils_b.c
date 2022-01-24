@@ -6,13 +6,13 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 14:04:08 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/24 12:03:25 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/24 12:06:38 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*swap_b(t_stack *stack)
+void	swap_b(t_stack *stack)
 {
 	int		tmp;
 	t_stack	*cpy;
@@ -22,10 +22,9 @@ t_stack	*swap_b(t_stack *stack)
 	stack->tab[stack->start_b] = stack->tab[stack->start_b + 1];
 	stack->tab[stack->start_b + 1] = tmp;
 	write (1, "sb\n", 3);
-	return (stack);
 }
 
-t_stack	*rotate_b(t_stack *stack)
+void	rotate_b(t_stack *stack)
 {
 	int	tmp;
 	int	i;
@@ -39,10 +38,9 @@ t_stack	*rotate_b(t_stack *stack)
 	}
 	stack->tab[i] = tmp;
 	write (1, "rb\n", 3);
-	return (stack);
 }
 
-t_stack	*rrotate_b(t_stack *stack)
+void	rrotate_b(t_stack *stack)
 {
 	int	i;
 	int	tmp;
@@ -55,7 +53,7 @@ t_stack	*rrotate_b(t_stack *stack)
 		i--;
 	}
 	stack->tab[stack->start_b] = tmp;
-	return (stack);
+	write(1, "rrb\n", 4);
 }
 
 void	push_a(t_stack *stack)
@@ -65,7 +63,6 @@ void	push_a(t_stack *stack)
 		
 	i = stack->start_b;
 	tmp = stack->tab[stack->start_b];
-	printf("start b = %d\n", stack->start_b);
 	while (i > 0)
 	{
 		stack->tab[i] = stack->tab[i - 1];
