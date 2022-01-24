@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 14:04:08 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/21 19:14:23 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/24 12:03:25 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,15 @@ void	push_a(t_stack *stack)
 	int	tmp;
 	int	i;
 		
-	i = 0;
+	i = stack->start_b;
 	tmp = stack->tab[stack->start_b];
-	while (i <= stack->start_b)
+	printf("start b = %d\n", stack->start_b);
+	while (i > 0)
 	{
-		stack->tab[i] = stack->tab[i + 1];
-		i++;
+		stack->tab[i] = stack->tab[i - 1];
+		i--;
 	}
 	stack->tab[0] = tmp;
 	stack->start_b += 1;
+	write(1, "pa\n", 3);
 }

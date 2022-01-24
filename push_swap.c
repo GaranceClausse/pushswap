@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/24 11:01:38 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/24 11:22:38 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,14 @@ int	main(int argc, char **argv)
 		ft_afficher(stack);
 		return (0);
 	}
+	if (argc == 6)
+	{
+		printf("arg = 6\n");
+		sort_five(stack);
+		ft_afficher(stack);
+		return (0);
+	}
+
 	push_swap(stack);
 	ft_afficher(stack);
 	return (0);
