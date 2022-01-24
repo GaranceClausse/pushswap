@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 16:27:15 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/24 19:09:44 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/24 19:38:22 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,11 +214,10 @@ void	push_swap_hundred(t_stack *stack)
 //		printf("big_pos = %d\n", big_pos);
 		if (big_pos < (get_median(stack) / 4))
 		{
-		//	while(big_val != stack->tab[stack->start_b + 1])
+			while(big_val != stack->tab[stack->start_b])
 				rrotate_b(stack);
 			push_a(stack);
 		}
-		
 		else
 		{
 			while ( big_val != stack->tab[stack->start_b])
@@ -312,7 +311,12 @@ void	push_swap(t_stack *stack)
 		if (stack->tab[0] > median)
 		{
 			push_b(stack);
-		//	if (stack->tab[stack->start_b] < stack->tab[start_b + 1])
+			if (stack->tab[stack->start_b] < stack->tab[stack->start_b + 1])
+				swap_b(stack);
+			if (stack->tab[stack->start_b] > stack->tab[stack->size])
+				rotate_b(stack);
+
+
 		}
 		else
 		{
