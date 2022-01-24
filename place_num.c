@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 16:27:15 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/21 19:21:02 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/24 11:12:58 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	push_swap(t_stack *stack)
 		printf("victoryy\n");
 		return ;
 	}
-	if (stack_sorted(stack) == 0)
+	while (stack_sorted(stack) == 0)
 	{
 		printf("stack not sorted\n ");
 		if (stack->size < stack->start_b)
@@ -145,4 +145,26 @@ void	push_swap(t_stack *stack)
 		i++;
 	}
 	ft_afficher(stack);
+}
+
+void	sort_three(t_stack *stack)
+{
+	if (stack_sorted(stack) == 1)
+		return ;
+	if (stack->tab[0] > stack->tab[1])
+	{
+		if (stack->tab[1] > stack->tab[2] || (stack->tab[0] > stack->tab[1]
+			&& stack->tab[0] > stack->tab[2]))
+			rotate_a(stack);
+		if (stack->tab[0] > stack->tab[1])
+		       swap_a(stack);
+	}
+	else if (stack->tab[2] > stack->tab[0])
+	{
+		swap_a(stack);
+		rotate_a(stack);
+	}
+	else if (stack_sorted(stack) == 0)
+		rrotate_a(stack);
+
 }

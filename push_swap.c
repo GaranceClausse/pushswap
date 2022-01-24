@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/21 19:11:11 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/24 11:01:38 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	check_doubles(char **argv, char *num, int pos)
 	int	i;
 
 	i = 1;
-	while (i < pos)
+	while (i < pos - 1)
 	{
 		if (ft_atoi(argv[i]) == ft_atoi(num))
 			return (0);
@@ -81,7 +81,7 @@ int	check_doubles(char **argv, char *num, int pos)
 
 void	malloc_pbm(char **tmp, int j)
 {
-	while (j > 0)
+	while (j >= 0)
 		free(tmp[j--]);
 	free (tmp);
 }
@@ -94,6 +94,7 @@ int	main(int argc, char **argv)
 	t_stack	*stack;
 
 	i = 0;
+	j = 0;
 	if (argc < 2)
 	{
 		write (1, "Error\n", 6);
@@ -109,16 +110,17 @@ int	main(int argc, char **argv)
 			i++;
 		}
 		argc = i + 1;
-		j = i + 1;
+		j = i - 1;
 	}
 	i = 0;
 	while (i < argc - 1)
 	{
-		i++;
+			i++;
 		if (check_int(argv[i]) == 0 || check_doubles(argv, argv[i], i) == 0)
 		{
 			write (1, "Error\n", 6);
-			malloc_pbm(tmp, j);
+			if (j > 0)
+				malloc_pbm(tmp, j);
 			return (0);
 		}
 	}
@@ -127,6 +129,13 @@ int	main(int argc, char **argv)
 		return (0);
 	stack = create_a(argc, argv, stack);
 	ft_afficher(stack);
+	if (argc == 4)
+	{
+		printf("arg = 4\n");
+		sort_three(stack);
+		ft_afficher(stack);
+		return (0);
+	}
 	push_swap(stack);
 	ft_afficher(stack);
 	return (0);

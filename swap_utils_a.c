@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:24:47 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/21 19:13:40 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/24 11:11:58 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	rrotate_a(t_stack *stack_a)
 		i--;
 	}
 	stack_a->tab[0] = tmp;
+	write (1, "rra\n", 4);
 }
 
 void	push_b(t_stack *a)
