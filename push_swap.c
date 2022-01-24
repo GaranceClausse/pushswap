@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/24 11:22:38 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/24 17:28:57 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ void	malloc_pbm(char **tmp, int j)
 	free (tmp);
 }
 
+
+
 int	main(int argc, char **argv)
 {
 	int		i;
@@ -100,7 +102,6 @@ int	main(int argc, char **argv)
 		write (1, "Error\n", 6);
 		return (0);
 	}
-
 	if (argc == 2)
 	{
 		tmp = ft_split(argv[1], ' ');
@@ -128,23 +129,12 @@ int	main(int argc, char **argv)
 	if (!stack)
 		return (0);
 	stack = create_a(argc, argv, stack);
-	ft_afficher(stack);
-	if (argc == 4)
-	{
-		printf("arg = 4\n");
+	if (stack_a_sorted(stack))
+			return (0);
+	if (argc >= 4)
 		sort_three(stack);
-		ft_afficher(stack);
-		return (0);
-	}
-	if (argc == 6)
-	{
-		printf("arg = 6\n");
-		sort_five(stack);
-		ft_afficher(stack);
-		return (0);
-	}
-
-	push_swap(stack);
+//	else if (argc > 4 && argc < 100)
+		push_swap_small(stack);
 	ft_afficher(stack);
 	return (0);
 }

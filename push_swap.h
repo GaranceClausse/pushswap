@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:29:06 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/24 12:06:21 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/24 17:25:25 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,14 @@ int		check_doubles(char **argv, char *num, int pos);
 t_stack	*create_a(int argc, char **argv, t_stack *stack);
 t_stack	*init_b(int argc);
 
+int		stack_a_sorted(t_stack *stack);
 int		stack_sorted(t_stack *stack);
-int		place_num(t_stack *b, int x);
-void	sort_b(t_stack *stack, int x);
-void	push_swap(t_stack *stack);
+int		stack_reverse_sorted(t_stack *stack);
+
+int		get_small_pos(t_stack *stack);
+int		get_small_val(t_stack *stack);
+void	sort_three(t_stack *stack);
+void	push_swap_small(t_stack *stack);
 
 void	swap_a(t_stack *stack);
 void	push_b(t_stack *stack);
