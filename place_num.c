@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 16:27:15 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/24 13:19:15 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/24 15:21:33 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ int	stack_reverse_sorted(t_stack *stack)
 	}
 	return (1);
 }
-
+/*
 int	place_num(t_stack *stack, int x)
 {
 	int	i;
 
 	i = 0;
 	if (x > stack->tab[stack->start_b])
-		i = 1;
+		i = 0;
 	else
 	{
 		while (x < stack->tab[stack->start_b + i])
@@ -65,26 +65,26 @@ void	sort_b(t_stack *stack, int x)
 
 	i = place_num(stack, x);
 	cpt = i;
-	size = stack->size - stack->start_b;
-	if (i == 1)
+	size = 7;
+	if (i == 0)
 	{
 		printf("i = %d\n", i);
 		push_b(stack);
 	}
-	else if (i == 2)
+	else if (i == 1)
 	{
 		printf("i = %d\n", i);
 
 		push_b(stack);
 		swap_b(stack);
 	}
-	else if (i == size + 1)
+	else if (i == size)
 	{
 		printf("i = %d\n", i);
 		push_b(stack);
 		rotate_b(stack);
 	}
-	else if (i >= 3 && i <= (size / 2))
+	else if (i > 3 && i < (size / 2))
 	{
 		while (i > 0)
 		{
@@ -101,7 +101,7 @@ void	sort_b(t_stack *stack, int x)
 			i--;
 		}
 	}
-	else if (i >= 3 && i > (size / 2))
+	else if (i > 3 && i >= (size / 2))
 	{
 		i = cpt;
 		cpt = size - i;
@@ -117,7 +117,7 @@ void	sort_b(t_stack *stack, int x)
 			cpt--;
 		}
 	}
-}
+}*/
 
 static void	ft_afficher(t_stack *stack)
 {
@@ -131,7 +131,7 @@ static void	ft_afficher(t_stack *stack)
 	}
 }
 		
-
+/*
 void	push_swap(t_stack *stack)
 {
 	int	i;
@@ -145,21 +145,108 @@ void	push_swap(t_stack *stack)
 		printf("victoryy\n");
 		return ;
 	}
-	while (stack_sorted(stack) == 0 || stack->tab[0] < stack->tab[stack->start_b])
+	while (stack_sorted(stack) == 0)
 	{
-		if (stack->tab[0] > stack->tab[stack->start_b - 1])
-			rotate_a(stack);
-		if (stack->tab[0] > stack->tab[1])
-			swap_a(stack);
+	//	if (stack->tab[0] < stack->tab[stack->start_b])
+	//	{
+			if (stack->tab[0] > stack->tab[stack->start_b - 1])
+				rotate_a(stack);
+			if (stack->tab[0] > stack->tab[1])
+				swap_a(stack);
+//		}
+//		else
+	//	{
+			sort_b(stack, stack->tab[0]);
+		   printf("tab[0] = %d, tab[1] = %d, tab[2] = %d, tab[3] = %d, tab[4] = %d, tab[5] = %d, tab[6] = %d, tab[7] = %d\n", stack->tab[0], stack->tab[1],  stack->tab[2], stack->tab[3],  stack->tab[4], stack->tab[5],  stack->tab[6], stack->tab[7]);
+	//	}
+	}	
+	ft_afficher(stack);
+}*/
+
+int	get_small_val(t_stack *stack)
+{
+	int	i;
+	int	val;
+
+	i = 0;
+	val = stack->tab[0];
+	while (i < stack->start_b)
+	{
+		if (stack->tab[i] < val)
+			val = stack->tab[i];
+		i++;
+	}
+	printf("val = %d\n", val);
+	return (val);
+}
+
+int	get_small_pos(t_stack *stack)
+{
+	int	i;
+	int	val;
+	int	pos;
+
+	i = 0;
+	pos = 0;
+	val = get_small_val(stack);
+	while(stack->tab[i++] != val)
+		pos++;
+	printf("pos = %d\n", pos);
+	return (pos);
+}
+
+void	push_swap(t_stack *stack)
+{
+	int	small_pos;
+	int	small_val;
+	int	i;
+
+
+	i = 0;
+	while (i < 2)
+	{
+		small_pos = get_small_pos(stack);
+		small_val = get_small_val(stack);
+		if (small_pos == 0)
+			push_b(stack);
+		else if (small_pos > (stack->start_b / 2))
+		{
+			printf(" stack->tab[0] = %d\n", stack->tab[0] );
+			while(small_val != stack->tab[0])
+				rrotate_a(stack);
+		}
 		else
 		{
-		   sort_b(stack, stack->tab[0]);
-		   printf("tab[0] = %d, tab[1] = %d, tab[2] = %d, tab[3] = %d, tab[4] = %d, tab[5] = %d, tab[6] = %d, tab[7] = %d\n", stack->tab[0], stack->tab[1],  stack->tab[2], stack->tab[3],  stack->tab[4], stack->tab[5],  stack->tab[6], stack->tab[7]);
+			while ( small_val != stack->tab[0])
+				rotate_a(stack);
 		}
-
+		push_b(stack);
+		i++;
 	}
-	ft_afficher(stack);
+	sort_three(stack);
+	push_a(stack);
+	push_a(stack);
 }
+/*	while (stack_sorted(stack) == 0)
+	{
+		while (stack->tab[0] < get_median(stack))
+				push_b(stack);
+		if (stack->tab[0] >stack->tab[1])
+			swap_a(stack);
+		else if (stack->tab[0] > stack->tab[stack->start_b - 1])
+			rotate_a(stack);
+		if (stack->size - stack->start_b == 1)
+		{
+			sort_three(stack);
+			push_a(stack);
+			push_a(stack);
+			if (stack->tab[0] >stack->tab[1])
+				swap_a(stack);
+			break ;
+		}
+	}*/
+		
+
 
 void	sort_three(t_stack *stack)
 {
@@ -199,5 +286,6 @@ void	sort_five(t_stack *stack)
 	else
 	{
 		push_swap(stack);
+		ft_afficher(stack);
 	}
 }
