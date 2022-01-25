@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 16:27:15 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/25 15:52:01 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/25 19:38:34 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	get_small_val(t_stack *stack)
 
 	i = 0;
 	val = stack->tab[0];
-	while (i < 9/*stack->start_b*/)
+	while (i < stack->start_b)
 	{
 		if (stack->tab[i] < val)
 			val = stack->tab[i];
@@ -212,46 +212,132 @@ void	push_swap_hundred(t_stack *stack)
 	int	big_pos;
 	int	big_val;
 	int	i;
-	int	tmp;
+	int	len_b;
 
 
 	i = stack->start_b;
-	tmp = i;
+	len_b = (stack->size + 1) / 2;
+//	tmp = i;
 	while (i <= stack->size)
 	{
 		big_pos = get_big_pos(stack);
 		big_val = get_big_val(stack);
 		printf("big pos= %d\n", big_pos);
 		printf("big val= %d\n", big_val);
-		if (big_pos < stack->size / 4)
+		printf("start_b = %d\n", stack->tab[stack->start_b]);
+		printf("stack->start_b == %d\n", stack->start_b);
+		printf("len_b = %d\n", (len_b / 2));
+		if (big_pos <= len_b / 2)
 		{
 			while(big_val != stack->tab[stack->start_b])
 			{
 				rotate_b(stack);
 			}
 			push_a(stack);
+			len_b--;
 		}
 		else
 		{
-			while ( big_val != stack->tab[stack->start_b])
+			while (big_val != stack->tab[stack->start_b])
 				rrotate_b(stack);
 			push_a(stack);
+			len_b--;
 		}
 		i++;
 	}
-	while (i > tmp)
+	printf("b est vide\n");
+
+	i = 0;
+	while (i <= stack->size)
+	{
+		printf("tab[%d] = ", i);
+		printf("%d\n", stack->tab[i]);
+		i++;
+	}	
+	printf("on push ce qui est pas trie dan b\n");
+	i = stack->size;
+	while (i > stack->size / 2)
 	{
 		rrotate_a(stack);
-		if (stack->tab[0] > get_median(stack) / 4)
+		push_b(stack);
+		//rrotate_a(stack);
+		/*if (stack->tab[0] >= (get_median(stack) / 2 + 1))
+		{
+			printf ("get_median(stack) / 2 = %d\n", get_median(stack) / 2);
 			push_b(stack);
+		}
 		if (stack->tab[0] > stack->tab[1] && stack->tab[stack->start_b] > stack->tab[stack->start_b + 1])
 		{
 			swap_a(stack);
 			swap_b(stack);
 		}
+		if (stack->tab[stack->start_b] > stack->tab[stack->size])
+		{
+			rotate_b(stack);
 
+		}*/	
 		i--;
 	}
+	i = 0;
+	while (i < stack->start_b)
+	{
+		printf("tab_a[%d] = ", i);
+		printf("%d\n", stack->tab[i]);
+		i++;
+	}	
+	printf("b est moitie rempli de la deuxieme moitie non tiree\n");
+
+	i = stack->start_b;
+	while (i <= stack->size)
+	{
+		printf("tab_b[%d] = ", i);
+		printf("%d\n", stack->tab[i]);
+		i++;
+	}	
+	printf("b est rempli de trucs non trie\n");
+
+	i = stack->start_b;
+//	printf("tab[start_b] = %d\n", stack->tab[stack->start_b]);
+//	printf("start_b = %d\n", stack->start_b);
+//	printf("stack size = %d\n", stack->size);
+	while (i <= stack->size)
+	{
+		big_pos = get_big_pos(stack);
+		big_val = get_big_val(stack);
+		printf("i = %d\n", i);
+		printf("big pos= %d\n", big_pos);
+		printf("big val= %d\n", big_val);
+		printf("start_b = %d\n", stack->start_b);
+		printf("tab[start_b] = %d\n", stack->tab[stack->start_b]);
+		//if (big_pos == 0)
+		//	push_a(stack);
+		if (big_pos > ((stack->size / 4)))
+		{
+			while(big_val != stack->tab[stack->start_b])
+			{
+				rrotate_b(stack);
+				printf("tab[start_b] after irrb = %d\n", stack->tab[stack->start_b]);
+				printf("i = %d\n", i);
+
+			}
+			push_a(stack);
+		}
+		else
+		{
+			while (big_val != stack->tab[stack->start_b])
+			{
+				rotate_b(stack);
+				printf("tab[start_b] after rb = %d\n", stack->tab[stack->start_b]);
+				printf("i = %d\n", i);
+			}
+
+
+			push_a(stack);
+		}
+		i++;
+	}
+
+
 }
 
 
@@ -308,7 +394,6 @@ int	get_median(t_stack *stack)
 
 	i = 0;
 	size = stack->size + 1;
-	printf("size= %d\n", size);
 	tab = malloc(sizeof(int) * (size));
 	if (!tab)
 		return (0);
@@ -326,6 +411,33 @@ int	get_median(t_stack *stack)
 	return (median);
 }
 
+int	get_quartil(t_stack *stack)
+{
+	int	i;
+	int	*tab;
+	int	size;
+	int	quartil;
+
+	i = 0;
+	size = stack->size + 1;
+	tab = malloc(sizeof(int) * (size));
+	if (!tab)
+		return (0);
+	while (i < size)
+	{
+		tab[i] = stack->tab[i];
+		i++;
+	}
+	tab = sort_tab(tab, size);
+	if (size % 2 == 0)
+		quartil = tab[size / 4];
+	else
+		quartil = tab[size / 4 + 1];
+	free(tab);
+	return (quartil);
+}
+
+
 void	push_swap(t_stack *stack)
 {
 	int	median;
@@ -334,9 +446,9 @@ void	push_swap(t_stack *stack)
 	i = 0;
 	median = get_median(stack);
 	printf("median= ??? %d\n",median);
-	while (i < stack->size)
+	while (i <= stack->size)
 	{
-		if (stack->tab[0] > median)
+		if (stack->tab[0] >= median)
 		{
 			push_b(stack);
 		
@@ -348,7 +460,24 @@ void	push_swap(t_stack *stack)
 		
 		i++;
 	}
-	
+	i = 0;
+	while (i < stack->start_b)
+	{
+		printf("tab_a[%d] = ", i);
+		printf("%d\n", stack->tab[i]);
+		i++;
+	}	
+	printf("b est moitie rempli\n");
+
+	i = stack->start_b;
+	while (stack->tab[i])
+	{
+		printf("tab_b[%d] = ", i);
+		printf("%d\n", stack->tab[i]);
+		i++;
+	}	
+	printf("b est rempli de trucs non trie\n");
+
 	push_swap_hundred(stack);
 //	push_swap_fifty(stack);
 

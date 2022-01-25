@@ -6,13 +6,13 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/25 13:13:32 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:31:13 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_afficher(t_stack *stack)
+void	ft_afficher(t_stack *stack)
 {
 	int	i;
 

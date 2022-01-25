@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 14:04:08 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/24 19:03:50 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/25 19:23:10 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	rotate_b(t_stack *stack)
 		
 	i = stack->start_b;
 	tmp = stack->tab[stack->start_b];
-	while (stack->tab[i + 1])
+	while (i < stack->size)
 	{
 		stack->tab[i] = stack->tab[i + 1];
 		i++;
 	}
-	stack->tab[i] = tmp;
+	stack->tab[stack->size] = tmp;
 	write (1, "rb\n", 3);
 }
 

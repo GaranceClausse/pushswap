@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:29:06 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/25 14:25:55 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:30:46 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_stack
 	int	*tab;
 }	t_stack;
 
+void	ft_afficher(t_stack *stack);
 
 int		check_int(char *str);
 int		check_doubles(char **argv, char *num, int pos);
