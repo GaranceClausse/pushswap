@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/24 19:30:23 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/25 13:13:32 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,11 @@ int	main(int argc, char **argv)
 	stack = create_a(argc, argv, stack);
 	if (stack_a_sorted(stack))
 			return (0);
-	if (argc >= 4)
+	if (argc <= 4)
 		sort_three(stack);
 	else if (argc > 4 && argc < 99)
 		push_swap_small(stack);
-	ft_afficher(stack);
-	if (argc > 99 && argc < 500)
+	else if (argc > 99 && argc < 500)
 		push_swap(stack);
 	ft_afficher(stack);
 	return (0);

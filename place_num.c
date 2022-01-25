@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 16:27:15 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/24 19:38:22 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/25 15:52:01 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	get_small_val(t_stack *stack)
 
 	i = 0;
 	val = stack->tab[0];
-	while (i < stack->start_b)
+	while (i < 9/*stack->start_b*/)
 	{
 		if (stack->tab[i] < val)
 			val = stack->tab[i];
@@ -85,8 +85,11 @@ int	get_small_pos(t_stack *stack)
 	i = 0;
 	pos = 0;
 	val = get_small_val(stack);
-	while(stack->tab[i++] != val)
+	while(stack->tab[i] != val)
+	{
 		pos++;
+		i++;
+	}
 	return (pos);
 }
 
@@ -97,7 +100,7 @@ int	get_big_val(t_stack *stack)
 
 	i = stack->start_b;
 	val = stack->tab[i];
-	while (i < stack->size)
+	while (i <= stack->size)
 	{
 		if (stack->tab[i] > val)
 			val = stack->tab[i];
@@ -114,9 +117,15 @@ int	get_big_pos(t_stack *stack)
 
 	i = stack->start_b;
 	pos = 0;
-	val = get_small_val(stack);
-	while(stack->tab[i++] != val)
-		pos++;
+	val = get_big_val(stack);
+//	if (stack->tab[i])
+//	{
+		while(stack->tab[i] != val)
+		{
+			pos++;
+			i++;
+		}
+//	}
 	return (pos);
 }
 
@@ -161,20 +170,22 @@ void	push_swap_small(t_stack *stack)
 void	push_swap_fifty(t_stack *stack)
 {
 	int	small_pos;
-//	int	big_pos;
 	int	small_val;
-//	int	big_val;
 	int	i;
 
 
 	i = 0;
-	while (i <= stack->size - 3)
+	while (i < stack->size- 3)
 	{
 		small_pos = get_small_pos(stack);
 		small_val = get_small_val(stack);
+		printf("small pos= %d\n", small_pos);
+		printf("small val= %d\n", small_val);
+		printf ("stack->size / 4) = %d\n", stack->size / 4);
+
 		if (small_pos == 0)
 			push_b(stack);
-		else if (small_pos > (get_median(stack) / 4))
+		else if (small_pos > ((stack->size + 1) / 4))
 		{
 			while(small_val != stack->tab[0])
 				rrotate_a(stack);
@@ -201,34 +212,44 @@ void	push_swap_hundred(t_stack *stack)
 	int	big_pos;
 	int	big_val;
 	int	i;
+	int	tmp;
 
 
 	i = stack->start_b;
+	tmp = i;
 	while (i <= stack->size)
 	{
 		big_pos = get_big_pos(stack);
 		big_val = get_big_val(stack);
-//		printf("bigval = %d\n", big_val);
-		if (big_pos == 0)
-			push_a(stack);
-//		printf("big_pos = %d\n", big_pos);
-		if (big_pos < (get_median(stack) / 4))
+		printf("big pos= %d\n", big_pos);
+		printf("big val= %d\n", big_val);
+		if (big_pos < stack->size / 4)
 		{
 			while(big_val != stack->tab[stack->start_b])
-				rrotate_b(stack);
+			{
+				rotate_b(stack);
+			}
 			push_a(stack);
 		}
 		else
 		{
 			while ( big_val != stack->tab[stack->start_b])
-				rotate_b(stack);
+				rrotate_b(stack);
 			push_a(stack);
 		}
 		i++;
 	}
-	while (i > stack->start_b)
+	while (i > tmp)
 	{
-		push_b(stack);
+		rrotate_a(stack);
+		if (stack->tab[0] > get_median(stack) / 4)
+			push_b(stack);
+		if (stack->tab[0] > stack->tab[1] && stack->tab[stack->start_b] > stack->tab[stack->start_b + 1])
+		{
+			swap_a(stack);
+			swap_b(stack);
+		}
+
 		i--;
 	}
 }
@@ -263,7 +284,7 @@ int	*sort_tab(int *tab, int size)
 	int	tmp;
 
 	i = 0;
-	while (i < size)
+	while (i < size - 1)
 	{
 		if (tab[i] > tab[i + 1])
 		{
@@ -272,7 +293,7 @@ int	*sort_tab(int *tab, int size)
 			tab[i + 1] = tmp;
 			i = 0;
 		}
-		else
+		else 
 			i++;
 	}
 	return (tab);
@@ -286,16 +307,22 @@ int	get_median(t_stack *stack)
 	int	median;
 
 	i = 0;
-	size = stack->size;
-	tab = malloc(sizeof(int) * (size + 1));
+	size = stack->size + 1;
+	printf("size= %d\n", size);
+	tab = malloc(sizeof(int) * (size));
 	if (!tab)
 		return (0);
-	while (i++ < stack->size)
+	while (i < size)
+	{
 		tab[i] = stack->tab[i];
+		i++;
+	}
 	tab = sort_tab(tab, size);
-	median = tab[size / 2];
+	if (size % 2 == 0)
+		median = tab[size / 2];
+	else
+		median = tab[size / 2 + 1];
 	free(tab);
-	//printf("median = %d\n", median);
 	return (median);
 }
 
@@ -306,17 +333,13 @@ void	push_swap(t_stack *stack)
 
 	i = 0;
 	median = get_median(stack);
+	printf("median= ??? %d\n",median);
 	while (i < stack->size)
 	{
 		if (stack->tab[0] > median)
 		{
 			push_b(stack);
-			if (stack->tab[stack->start_b] < stack->tab[stack->start_b + 1])
-				swap_b(stack);
-			if (stack->tab[stack->start_b] > stack->tab[stack->size])
-				rotate_b(stack);
-
-
+		
 		}
 		else
 		{
@@ -327,6 +350,7 @@ void	push_swap(t_stack *stack)
 	}
 	
 	push_swap_hundred(stack);
-	push_swap_fifty(stack);
+//	push_swap_fifty(stack);
 
-	}
+}
+

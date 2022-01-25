@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:29:06 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/24 18:18:59 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/25 14:25:55 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	push_swap_small(t_stack *stack);
 int		get_median(t_stack *stack);
 int		*sort_tab(int *tab, int size);
 void	push_swap_fifty(t_stack *stack);
+void	push_swap_hundred(t_stack *stack);
 void	push_swap(t_stack *stack);
 
 void	swap_a(t_stack *stack);
