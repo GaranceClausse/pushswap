@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/25 18:31:13 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/25 19:46:04 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	main(int argc, char **argv)
 		sort_three(stack);
 	else if (argc > 4 && argc < 99)
 		push_swap_small(stack);
-	else if (argc > 99 && argc < 500)
+	else if (argc > 99)
 		push_swap(stack);
 	ft_afficher(stack);
 	return (0);
