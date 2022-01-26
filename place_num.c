@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 16:27:15 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/25 19:42:43 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/26 12:12:44 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,13 +261,14 @@ void	push_swap_hundred(t_stack *stack)
 //	printf("tab[start_b] = %d\n", stack->tab[stack->start_b]);
 //	printf("start_b = %d\n", stack->start_b);
 //	printf("stack size = %d\n", stack->size);
+	len_b = (stack->size + 1) / 2;
 	while (i <= stack->size)
 	{
 		big_pos = get_big_pos(stack);
 		big_val = get_big_val(stack);
 		//if (big_pos == 0)
 		//	push_a(stack);
-		if (big_pos > ((stack->size / 4)))
+		if (big_pos > ((len_b / 2)))
 		{
 			while(big_val != stack->tab[stack->start_b])
 			{
@@ -275,16 +276,18 @@ void	push_swap_hundred(t_stack *stack)
 				
 			}
 			push_a(stack);
+			len_b--;
 		}
 		else
 		{
 			while (big_val != stack->tab[stack->start_b])
 			{
 				rotate_b(stack);
-							}
+			}
 
 
 			push_a(stack);
+			len_b--;
 		}
 		i++;
 	}
@@ -292,7 +295,163 @@ void	push_swap_hundred(t_stack *stack)
 
 }
 
+void	push_swap_fivehundred(t_stack *stack)
+{
+	int	big_pos;
+	int	big_val;
+	int	i;
+	int	len_b;
+	int	median;
+	int	bigquartil;
+	int	quartil;
 
+
+	i = stack->start_b;
+	len_b = (stack->size + 1) / 4;
+	bigquartil = get_bigquartil(stack);
+	quartil = get_quartil(stack);		
+	median = get_median(stack);
+	while (i <= stack->size)
+	{
+		big_pos = get_big_pos(stack);
+		big_val = get_big_val(stack);
+		if (big_pos <= len_b / 2)
+		{
+			while(big_val != stack->tab[stack->start_b])
+			{
+				rotate_b(stack);
+			}
+			push_a(stack);
+			len_b--;
+		}
+		else
+		{
+			while (big_val != stack->tab[stack->start_b])
+				rrotate_b(stack);
+			push_a(stack);
+			len_b--;
+		}
+		i++;
+	}
+	i = 0;
+	while (i <= stack->size)
+	{
+		if (stack->tab[0] > bigquartil)
+		{
+			push_b(stack);
+		
+		}
+		else
+		{
+			rrotate_a(stack);
+		}
+		
+		i++;
+	}
+	i = stack->start_b;
+	len_b = (stack->size + 1) / 4;
+	while (i <= stack->size)
+	{
+		big_pos = get_big_pos(stack);
+		big_val = get_big_val(stack);
+		//if (big_pos == 0)
+		//	push_a(stack);
+		if (big_pos > ((len_b / 2)))
+		{
+			while(big_val != stack->tab[stack->start_b])
+			{
+				rrotate_b(stack);
+				
+			}
+			push_a(stack);
+			len_b--;
+		}
+		else
+		{
+			while (big_val != stack->tab[stack->start_b])
+			{
+				rotate_b(stack);
+			}
+
+
+			push_a(stack);
+			len_b--;
+		}
+		i++;
+	}/*
+	i = 0;
+	while (i <= (stack->size / 4) * 3)
+	{
+		if (stack->tab[0] < median && stack->tab[0] >= quartil)
+		{
+			push_b(stack);
+		
+		}
+		else
+		{
+			rotate_a(stack);
+		}
+		i++;
+	}
+	
+	len_b = (stack->size + 1) / 4;
+	i = stack->start_b;
+	while (i <= stack->size)
+	{
+		big_pos = get_big_pos(stack);
+		big_val = get_big_val(stack);
+		if (big_pos <= len_b / 2)
+		{
+			while(big_val != stack->tab[stack->start_b])
+			{
+				rotate_b(stack);
+			}
+			push_a(stack);
+			len_b--;
+		}
+		else
+		{
+			while (big_val != stack->tab[stack->start_b])
+				rrotate_b(stack);
+			push_a(stack);
+			len_b--;
+		}
+		i++;
+	}
+	i = 0;
+	while (i <= (stack->size) / 2)
+	{
+		rrotate_a(stack);
+		push_b(stack);
+		i++;
+	}
+	len_b = (stack->size + 1) / 4;
+	i = stack->start_b;
+	while (i <= stack->size)
+	{
+		big_pos = get_big_pos(stack);
+		big_val = get_big_val(stack);
+		if (big_pos <= len_b / 2)
+		{
+			while(big_val != stack->tab[stack->start_b])
+			{
+				rotate_b(stack);
+			}
+			push_a(stack);
+			len_b--;
+		}
+		else
+		{
+			while (big_val != stack->tab[stack->start_b])
+				rrotate_b(stack);
+			push_a(stack);
+			len_b--;
+		}
+		i++;
+	}
+
+*/
+}
 
 
 void	sort_three(t_stack *stack)
@@ -360,7 +519,35 @@ int	get_median(t_stack *stack)
 	else
 		median = tab[size / 2 + 1];
 	free(tab);
+	
 	return (median);
+}
+
+int	get_bigquartil(t_stack *stack)
+{
+	int	i;
+	int	*tab;
+	int	size;
+	int	quartil;
+
+	i = 0;
+	size = stack->size + 1;
+	tab = malloc(sizeof(int) * (size));
+	if (!tab)
+		return (0);
+	while (i < size)
+	{
+		tab[i] = stack->tab[i];
+		i++;
+	}
+	tab = sort_tab(tab, size);
+	if (size % 2 == 0)
+		quartil = tab[(size / 4) * 3];
+	else
+		quartil = tab[(size / 4 + 1) * 3];
+	free(tab);
+	printf("big_quartil == %d\n", quartil);
+	return (quartil);
 }
 
 int	get_quartil(t_stack *stack)
@@ -386,11 +573,11 @@ int	get_quartil(t_stack *stack)
 	else
 		quartil = tab[size / 4 + 1];
 	free(tab);
+	
 	return (quartil);
 }
 
-
-void	push_swap(t_stack *stack)
+void	push_swap_hundred_init(t_stack *stack)
 {
 	int	median;
 	int	i;
@@ -412,6 +599,34 @@ void	push_swap(t_stack *stack)
 		i++;
 	}
 	push_swap_hundred(stack);
+//	push_swap_fifty(stack);
+
+}
+
+void	push_swap_fivehundred_init(t_stack *stack)
+{
+	int	bigquartil;
+	int	median;
+	int	i;
+
+	i = 0;
+	bigquartil = get_bigquartil(stack);
+	median = get_median(stack);
+	while (i <= stack->size)
+	{
+		if (stack->tab[0] <= bigquartil && stack->tab[0] > median)
+		{
+			push_b(stack);
+		
+		}
+		else
+		{
+			rotate_a(stack);
+		}
+		
+		i++;
+	}
+	push_swap_fivehundred(stack);
 //	push_swap_fifty(stack);
 
 }

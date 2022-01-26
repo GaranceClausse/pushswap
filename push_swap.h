@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:29:06 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/25 18:30:46 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/26 10:38:58 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,12 @@ int		get_median(t_stack *stack);
 int		*sort_tab(int *tab, int size);
 void	push_swap_fifty(t_stack *stack);
 void	push_swap_hundred(t_stack *stack);
-void	push_swap(t_stack *stack);
+void	push_swap_hundred_init(t_stack *stack);
+
+int		get_bigquartil(t_stack *stack);
+int		get_quartil(t_stack *stack);
+void	push_swap_fivehundred(t_stack *stack);
+void	push_swap_fivehundred_init(t_stack *stack);
 
 void	swap_a(t_stack *stack);
 void	push_b(t_stack *stack);

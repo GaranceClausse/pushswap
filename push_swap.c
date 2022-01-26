@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/25 19:46:04 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/26 10:40:25 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_stack	*create_a(int argc, char **argv, t_stack *stack)
 	if (!stack->tab)
 		return (NULL);
 	stack->size = i;
-	printf("i = %d et size = %d\n", i , stack->size);
 	stack->start_b = i + 1;
 	while (i >= 0)
 	{
@@ -98,8 +97,13 @@ int	main(int argc, char **argv)
 		sort_three(stack);
 	else if (argc > 4 && argc < 99)
 		push_swap_small(stack);
-	else if (argc > 99)
-		push_swap(stack);
+	else if (argc > 99 && argc < 500)
+		push_swap_hundred_init(stack);
+	else if (argc >= 500)
+	{
+		printf("500 okkkkkkkkkkkk\n");
+		push_swap_fivehundred_init(stack);
+	}
 	ft_afficher(stack);
 	return (0);
 }
