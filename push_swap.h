@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:29:06 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/26 14:56:59 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/26 17:27:33 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_stack	*init_b(int argc);
 
 int		stack_a_sorted(t_stack *stack);
 int		stack_sorted(t_stack *stack);
+int		check_a(t_stack *stack, int begin, int stop);
 int		stack_reverse_sorted(t_stack *stack);
 
 int		get_small_pos(t_stack *stack);

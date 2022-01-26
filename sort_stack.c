@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 14:28:04 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/26 14:58:09 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/26 18:10:55 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	push_and_rotate_median(t_stack *stack, int bigstack)
 	i = 0;
 	median = get_median(stack);
 	bigquartil = get_bigquartil(stack);
-	while (i <= stack->size)
+	while (i < stack->size)
 	{
 		if (bigstack == 0)
 		{
@@ -32,7 +32,7 @@ void	push_and_rotate_median(t_stack *stack, int bigstack)
 		}
 		else
 		{
-			if (stack->tab[0] >= median && stack->tab[0] < bigquartil)
+			if (stack->tab[0] >= median && stack->tab[0] <= bigquartil)
 				push_b(stack);
 			else
 				rotate_a(stack);
@@ -44,25 +44,21 @@ void	push_and_rotate_median(t_stack *stack, int bigstack)
 void	sort_b(t_stack *stack, int bigstack)
 {
 	int	len_b;
-	int	i;
 	int	big_pos;
 	int	big_val;
 
 	if (bigstack == 1)
-		len_b = (stack->size + 1) / 4;
+		len_b = (stack->size - stack->start_b);
 	else
-		len_b = (stack->size + 1) / 4;
-	i = stack->start_b;
-	while (i <= stack->size)
+		len_b = (stack->size - stack->start_b);
+	while (stack->start_b <= stack->size)
 	{
 		big_pos = get_big_pos(stack);
 		big_val = get_big_val(stack);
 		if (big_pos <= len_b / 2)
 		{
 			while(big_val != stack->tab[stack->start_b])
-			{
 				rotate_b(stack);
-			}
 			push_a(stack);
 			len_b--;
 		}
@@ -73,7 +69,6 @@ void	sort_b(t_stack *stack, int bigstack)
 			push_a(stack);
 			len_b--;
 		}
-		i++;
 	}
 }
 

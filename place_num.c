@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 16:27:15 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/26 15:18:19 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/26 18:11:54 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,22 +158,19 @@ void	push_swap_fivehundred(t_stack *stack)
 {
 
 	int	i;
-	int	len_b;
 	int	median;
 	int	bigquartil;
 	int	quartil;
 
 
-	i = stack->start_b;
-	len_b = (stack->size + 1) / 4;
 	bigquartil = get_bigquartil(stack);
 	quartil = get_quartil(stack);		
 	median = get_median(stack);
 	sort_b(stack, 1);
 	i = 0;
-	while (i <= stack->size)
+	while (stack->tab[stack->start_b - 1] != bigquartil)
 	{
-		if (stack->tab[0] >= bigquartil)
+		if (stack->tab[0] > bigquartil)
 		{
 			push_b(stack);
 		
@@ -185,14 +182,9 @@ void	push_swap_fivehundred(t_stack *stack)
 		
 		i++;
 	}
-	i = stack->start_b;
-	len_b = (stack->size + 1) / 4;
 	sort_b(stack, 1);
-	printf("start b == %d\n", stack->start_b);
-	printf("tab[0] == %d\n", stack->tab[0]);
-	printf("(stack->size / 4) * 3 + 1 == %d\n", ((stack->size + 1) / 4) * 3 );
-	i = 1;
-	while (i <= ((stack->size + 1) / 4) * 3)
+	i = 0;
+	while (stack->tab[0] != median)
 	{
 		if (stack->tab[0] < median && stack->tab[0] >= quartil)
 		{
@@ -207,13 +199,14 @@ void	push_swap_fivehundred(t_stack *stack)
 	}
 	sort_b(stack, 1);
 	i = 0;
-	while (i <= (stack->size) / 4)
+	while (stack->tab[0] == quartil && stack->tab[stack->start_b - 1] < quartil)
 	{
 		rrotate_a(stack);
 		push_b(stack);
 		i++;
 	}
 	sort_b(stack, 1);
+
 }
 
 
