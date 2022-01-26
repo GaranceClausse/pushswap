@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:29:06 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/26 10:38:58 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/26 14:56:59 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,29 @@ int		stack_reverse_sorted(t_stack *stack);
 
 int		get_small_pos(t_stack *stack);
 int		get_small_val(t_stack *stack);
-void	sort_three(t_stack *stack);
-void	push_swap_small(t_stack *stack);
+int		get_big_val(t_stack *stack);
+int		get_big_pos(t_stack *stack);
 
-int		get_median(t_stack *stack);
-int		*sort_tab(int *tab, int size);
+void	push_and_rotate_median(t_stack *stack, int bigstack);
+void	sort_b(t_stack *stack, int bigstack);
+
+void	sort_three(t_stack *stack);
+void	sort_five(t_stack *stack);
+
+void	push_swap_hundred_init(t_stack *stack);
+void	push_swap_fivehundred_init(t_stack *stack);
+
+void	push_swap_small(t_stack *stack);
 void	push_swap_fifty(t_stack *stack);
 void	push_swap_hundred(t_stack *stack);
-void	push_swap_hundred_init(t_stack *stack);
+void	push_swap_fivehundred(t_stack *stack);
 
+
+int		*sort_tab(int *tab, int size);
+int		get_median(t_stack *stack);
 int		get_bigquartil(t_stack *stack);
 int		get_quartil(t_stack *stack);
-void	push_swap_fivehundred(t_stack *stack);
-void	push_swap_fivehundred_init(t_stack *stack);
+
 
 void	swap_a(t_stack *stack);
 void	push_b(t_stack *stack);
@@ -67,7 +77,5 @@ void	push_a(t_stack *stack);
 void	rotate_b(t_stack *stack);
 void	rrotate_b(t_stack *stack);
 
-void	sort_three(t_stack *stack);
-void	sort_five(t_stack *stack);
 
 #endif
