@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 14:13:52 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/28 12:31:42 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/28 16:49:28 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,61 @@ int	get_bigquartil(t_stack *stack)
 	return (quartil);
 }
 
+int	get_eighth(t_stack *stack)
+{
+	int	i;
+	int	*tab;
+	int	size;
+	int	eighth;
+
+	i = 0;
+
+	size = stack->size + 1;
+	tab = malloc(sizeof(int) * (size));
+	if (!tab)
+		return (0);
+	while (i < size)
+	{
+		tab[i] = stack->tab[i];
+		i++;
+	}
+	tab = sort_tab(tab, size);
+	if (size % 2 == 0)
+		eighth = tab[(size / 8) * 7];
+	else
+		eighth = tab[(size / 8 + 1) * 7];
+	free(tab);
+	return (eighth);
+}
+
+int	get_smalleighth(t_stack *stack)
+{
+	int	i;
+	int	*tab;
+	int	size;
+	int	eighth;
+
+	i = 0;
+
+	size = stack->size + 1;
+	tab = malloc(sizeof(int) * (size));
+	if (!tab)
+		return (0);
+	while (i < size)
+	{
+		tab[i] = stack->tab[i];
+		i++;
+	}
+	tab = sort_tab(tab, size);
+	if (size % 2 == 0)
+		eighth = tab[(size / 8)];
+	else
+		eighth = tab[(size / 8 + 1)];
+	free(tab);
+	return (eighth);
+}
+
+
 int	get_quartil(t_stack *stack)
 {
 	int	i;
@@ -137,3 +192,4 @@ int	get_quartil(t_stack *stack)
 
 	return (quartil);
 }
+
