@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 14:13:52 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/26 14:14:29 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/28 12:31:42 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,30 @@ int	*sort_tab(int *tab, int size)
 			i++;
 	}
 	return (tab);
+}
+
+int	get_biggest(t_stack *stack)
+{
+	int	i;
+	int	*tab;
+	int	size;
+	int	biggest;
+
+	i = 0;
+	size = stack->size + 1;
+	tab = malloc(sizeof(int) * (size));
+	if (!tab)
+		return (0);
+	while (i < size)
+	{
+		tab[i] = stack->tab[i];
+		i++;
+	}
+	tab = sort_tab(tab, size);
+	biggest = tab[size - 1];
+	free (tab);
+	return (biggest);
+
 }
 
 int	get_median(t_stack *stack)
@@ -83,7 +107,6 @@ int	get_bigquartil(t_stack *stack)
 	else
 		quartil = tab[(size / 4 + 1) * 3];
 	free(tab);
-	printf("big_quartil == %d\n", quartil);
 	return (quartil);
 }
 

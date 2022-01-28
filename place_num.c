@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 16:27:15 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/26 18:11:54 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/28 12:37:16 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,11 @@ void	push_swap_hundred(t_stack *stack)
 {
 	int	big_pos;
 	int	big_val;
-	int	i;
 	int	len_b;
 
 
-	i = stack->start_b;
-	len_b = (stack->size + 1) / 2;
-	while (i <= stack->size)
+	len_b = (stack->size - stack->start_b);
+	while (stack->start_b <= stack->size)
 	{
 		big_pos = get_big_pos(stack);
 		big_val = get_big_val(stack);
@@ -115,17 +113,16 @@ void	push_swap_hundred(t_stack *stack)
 			push_a(stack);
 			len_b--;
 		}
-		i++;
 	}
-	i = stack->size;
-	while (i >= stack->size / 2)
+	while (stack->tab[0] != get_biggest(stack))
 	{
 		rrotate_a(stack);
-		push_b(stack);
-		i--;
+		if ( stack->tab[0] != get_biggest(stack))
+			push_b(stack);
 	}
-	len_b = (stack->size + 1) / 2;
-	while (i < stack->size)
+	rotate_a(stack);
+	len_b = (stack->size - stack->start_b);
+	while (stack->start_b <= stack->size)
 	{
 		big_pos = get_big_pos(stack);
 		big_val = get_big_val(stack);
@@ -150,7 +147,6 @@ void	push_swap_hundred(t_stack *stack)
 			push_a(stack);
 			len_b--;
 		}
-		i++;
 	}
 }
 

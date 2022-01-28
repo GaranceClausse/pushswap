@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:24:47 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/24 11:57:26 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/28 13:33:17 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,6 @@ void	push_b(t_stack *stack)
 	}
 	stack->start_b -= 1;
 	stack->tab[stack->start_b] = tmp;
-	write (1, "pb\n", 4);
+	write (1, "pb\n", 3);
 
 }

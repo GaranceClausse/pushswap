@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 14:28:04 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/26 18:10:55 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/28 12:36:34 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	push_and_rotate_median(t_stack *stack, int bigstack)
 	i = 0;
 	median = get_median(stack);
 	bigquartil = get_bigquartil(stack);
-	while (i < stack->size)
+	while (i <= stack->size)
 	{
 		if (bigstack == 0)
 		{

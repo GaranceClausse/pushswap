@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 14:11:25 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/26 17:41:27 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/28 13:47:43 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	stack_a_sorted(t_stack *stack)
 
 	i = 1;
 	cpt = 1;
-	while (i < stack->start_b - 1)
+	while (i < stack->start_b)
 	{
 		if (stack->tab[i] > stack->tab[i - 1])
 		{

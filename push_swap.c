@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/26 18:13:25 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/28 13:48:33 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_afficher(t_stack *stack)
 	int	i;
 
 	i = 0;
-	while (i <= stack->size)
+	while (stack->tab[i])
 	{
 		printf("%d\n", stack->tab[i]);
 		i++;
@@ -97,10 +97,12 @@ int	main(int argc, char **argv)
 		sort_three(stack);
 	else if (argc > 4 && argc < 99)
 		push_swap_small(stack);
-	else if (argc > 99 && argc < 500)
+	else if (argc >= 99 && argc < 500)
 		push_swap_hundred_init(stack);
 	else if (argc >= 500)
 		push_swap_fivehundred_init(stack);
 //	ft_afficher(stack);
+	free(stack->tab);
+	free(stack);
 	return (0);
 }
