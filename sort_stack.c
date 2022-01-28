@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 14:28:04 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/28 12:36:34 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/28 14:51:07 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	push_and_rotate_median(t_stack *stack, int bigstack)
 		{
 			if (stack->tab[0] >= median && stack->tab[0] <= bigquartil)
 				push_b(stack);
-			else
+			else 
 				rotate_a(stack);
 		}
 		i++;
@@ -55,6 +55,7 @@ void	sort_b(t_stack *stack, int bigstack)
 	{
 		big_pos = get_big_pos(stack);
 		big_val = get_big_val(stack);
+	//	printf("big_val = %d\n", big_val);
 		if (big_pos <= len_b / 2)
 		{
 			while(big_val != stack->tab[stack->start_b])

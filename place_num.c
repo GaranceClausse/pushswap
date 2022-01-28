@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 16:27:15 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/28 12:37:16 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/28 15:00:20 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,13 +114,13 @@ void	push_swap_hundred(t_stack *stack)
 			len_b--;
 		}
 	}
-	while (stack->tab[0] != get_biggest(stack))
+	while (stack->tab[stack->start_b - 1] != get_biggest(stack))
 	{
 		rrotate_a(stack);
 		if ( stack->tab[0] != get_biggest(stack))
 			push_b(stack);
 	}
-	rotate_a(stack);
+//	rotate_a(stack);
 	len_b = (stack->size - stack->start_b);
 	while (stack->start_b <= stack->size)
 	{
@@ -166,18 +166,20 @@ void	push_swap_fivehundred(t_stack *stack)
 	i = 0;
 	while (stack->tab[stack->start_b - 1] != bigquartil)
 	{
-		if (stack->tab[0] > bigquartil)
+		if (stack->tab[0] >= bigquartil)
 		{
 			push_b(stack);
 		
 		}
-		else
+		else if (stack->tab[stack->start_b - 1] != bigquartil)
 		{
 			rrotate_a(stack);
 		}
 		
 		i++;
 	}
+	if (stack->tab[0] > bigquartil)
+		push_b(stack);
 	sort_b(stack, 1);
 	i = 0;
 	while (stack->tab[0] != median)
@@ -187,7 +189,7 @@ void	push_swap_fivehundred(t_stack *stack)
 			push_b(stack);
 		
 		}
-		else
+		else if (stack->tab[0] != median)
 		{
 			rotate_a(stack);
 		}
@@ -195,13 +197,18 @@ void	push_swap_fivehundred(t_stack *stack)
 	}
 	sort_b(stack, 1);
 	i = 0;
-	while (stack->tab[0] == quartil && stack->tab[stack->start_b - 1] < quartil)
+	while (stack->tab[stack->start_b - 1] != get_biggest(stack))
 	{
 		rrotate_a(stack);
 		push_b(stack);
+
 		i++;
 	}
 	sort_b(stack, 1);
+//	printf("stack->tab[stack->start_b - 1] = %d\n", stack->tab[stack->start_b - 1]);  
+//	printf("bigquartil = %d\n", bigquartil);
+//	printf("biggest = %d\n", get_biggest(stack)); 
+//	printf("bigval = %d\n", get_big_val(stack)); */
 
 }
 
