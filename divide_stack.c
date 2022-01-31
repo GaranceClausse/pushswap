@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 14:13:52 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/31 15:54:50 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/31 18:23:48 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	get_biggest(t_stack *stack)
 	biggest = tab[size - 1];
 	free (tab);
 	return (biggest);
-
 }
 
 int	get_median(t_stack *stack)
@@ -75,12 +74,8 @@ int	get_median(t_stack *stack)
 		i++;
 	}
 	tab = sort_tab(tab, size);
-	if (size % 2 == 0)
-		median = tab[size / 2];
-	else
-		median = tab[size / 2 + 1];
+	median = tab[size / 2];
 	free(tab);
-
 	return (median);
 }
 
@@ -102,10 +97,7 @@ int	get_bigquartil(t_stack *stack)
 		i++;
 	}
 	tab = sort_tab(tab, size);
-	if (size % 2 == 0)
-		quartil = tab[(size / 4) * 3];
-	else
-		quartil = tab[(size / 4 + 1) * 3];
+	quartil = tab[(size / 4) * 3];
 	free(tab);
 	return (quartil);
 }
@@ -118,7 +110,6 @@ int	get_eighth(t_stack *stack)
 	int	eighth;
 
 	i = 0;
-
 	size = stack->size + 1;
 	tab = malloc(sizeof(int) * (size));
 	if (!tab)
@@ -129,10 +120,7 @@ int	get_eighth(t_stack *stack)
 		i++;
 	}
 	tab = sort_tab(tab, size);
-	if (size % 2 == 0)
-		eighth = tab[(size / 8) * 7];
-	else
-		eighth = tab[(size / 8 + 1) * 7];
+	eighth = tab[(size / 8 + 1) * 7];
 	free(tab);
 	return (eighth);
 }
@@ -145,7 +133,6 @@ int	get_smalleighth(t_stack *stack)
 	int	eighth;
 
 	i = 0;
-
 	size = stack->size + 1;
 	tab = malloc(sizeof(int) * (size));
 	if (!tab)
@@ -156,14 +143,10 @@ int	get_smalleighth(t_stack *stack)
 		i++;
 	}
 	tab = sort_tab(tab, size);
-	if (size % 2 == 0)
-		eighth = tab[(size / 8)];
-	else
-		eighth = tab[(size / 8 + 1)];
+	eighth = tab[(size / 8 + 1)];
 	free(tab);
 	return (eighth);
 }
-
 
 int	get_quartil(t_stack *stack)
 {
@@ -173,7 +156,6 @@ int	get_quartil(t_stack *stack)
 	int	quartil;
 
 	i = 0;
-
 	size = stack->size + 1;
 	tab = malloc(sizeof(int) * (size));
 	if (!tab)
@@ -184,12 +166,8 @@ int	get_quartil(t_stack *stack)
 		i++;
 	}
 	tab = sort_tab(tab, size);
-	if (size % 2 == 0)
-		quartil = tab[size / 4];
-	else
-		quartil = tab[size / 4 + 1];
+	quartil = tab[size / 4 + 4];
 	free(tab);
-
 	return (quartil);
 }
 
@@ -201,7 +179,6 @@ int	get_tenth(t_stack *stack)
 	int	quartil;
 
 	i = 0;
-
 	size = stack->size + 1;
 	tab = malloc(sizeof(int) * (size));
 	if (!tab)
@@ -225,7 +202,6 @@ int	get_tentyth(t_stack *stack)
 	int	quartil;
 
 	i = 0;
-
 	size = stack->size + 1;
 	tab = malloc(sizeof(int) * (size));
 	if (!tab)
@@ -249,7 +225,6 @@ int	get_thirtyth(t_stack *stack)
 	int	quartil;
 
 	i = 0;
-
 	size = stack->size + 1;
 	tab = malloc(sizeof(int) * (size));
 	if (!tab)
@@ -262,7 +237,6 @@ int	get_thirtyth(t_stack *stack)
 	tab = sort_tab(tab, size);
 	quartil = tab[(size / 10) * 3];
 	free(tab);
-
 	return (quartil);
 }
 
@@ -274,7 +248,6 @@ int	get_fourtyth(t_stack *stack)
 	int	quartil;
 
 	i = 0;
-
 	size = stack->size + 1;
 	tab = malloc(sizeof(int) * (size));
 	if (!tab)
@@ -298,7 +271,6 @@ int	get_sixtyth(t_stack *stack)
 	int	quartil;
 
 	i = 0;
-
 	size = stack->size + 1;
 	tab = malloc(sizeof(int) * (size));
 	if (!tab)
@@ -322,7 +294,6 @@ int	get_eightyth(t_stack *stack)
 	int	quartil;
 
 	i = 0;
-
 	size = stack->size + 1;
 	tab = malloc(sizeof(int) * (size));
 	if (!tab)
@@ -337,8 +308,3 @@ int	get_eightyth(t_stack *stack)
 	free(tab);
 	return (quartil);
 }
-
-
-
-
-

@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 14:11:25 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/28 13:47:43 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/31 18:24:23 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	check_a(t_stack *stack, int begin, int stop)
 	int	i;
 
 	i = 0;
-	while ( i < stack->start_b)
+	while (i < stack->start_b)
 	{
 		if (stack->tab[i] < begin && stack->tab[i] >= stop)
 			return (0);
@@ -53,7 +53,7 @@ int	stack_sorted(t_stack *stack)
 	int	i;
 
 	i = 0;
-	while( i < stack->size)
+	while (i < stack->size)
 	{
 		if (stack->tab[i] > stack->tab[i + 1])
 			return (0);
@@ -68,7 +68,7 @@ int	stack_reverse_sorted(t_stack *stack)
 	int	i;
 
 	i = 0;
-	while( i < stack->size)
+	while (i < stack->size)
 	{
 		if (stack->tab[i] < stack->tab[i + 1])
 			return (0);

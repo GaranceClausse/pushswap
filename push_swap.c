@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/31 17:29:17 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/31 18:30:44 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_afficher(t_stack *stack)
 	int	i;
 
 	i = 0;
-	while ( i < 500)
+	while (i < 500)
 	{
 		printf("%d\n", stack->tab[i]);
 		i++;
@@ -27,7 +27,7 @@ void	ft_afficher(t_stack *stack)
 t_stack	*create_a(int argc, char **argv, t_stack *stack)
 {
 	int		i;
-	
+
 	i = argc - 2;
 	stack->tab = malloc(sizeof(int) * (argc));
 	if (!stack->tab)
@@ -37,7 +37,6 @@ t_stack	*create_a(int argc, char **argv, t_stack *stack)
 	while (i >= 0)
 	{
 		stack->tab[i] = ft_atoi(argv[i + 1]);
-		//printf("tab[i] = %d\n", stack->tab[i]);
 		i--;
 	}
 	return (stack);
@@ -78,7 +77,7 @@ int	main(int argc, char **argv)
 	i = 0;
 	while (i < argc - 1)
 	{
-			i++;
+		i++;
 		if (check_int(argv[i]) == 0 || check_doubles(argv, argv[i], i) == 0)
 		{
 			write (1, "Error\n", 6);
@@ -92,16 +91,15 @@ int	main(int argc, char **argv)
 		return (0);
 	stack = create_a(argc, argv, stack);
 	if (stack_a_sorted(stack))
-			return (0);
+		return (0);
 	if (argc <= 4)
 		sort_three(stack);
-	else if (argc > 4 && argc < 8)
+	else if (argc > 4 && argc < 60)
 		push_swap_small(stack);
-	else if (argc >= 8 && argc < 250)
+	else if (argc >= 60 && argc < 250)
 		push_swap_hundred(stack);
 	else if (argc >= 250)
 		push_swap_fivehundred(stack);
-
 //	ft_afficher(stack);
 	free(stack->tab);
 	free(stack);

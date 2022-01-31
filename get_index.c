@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 14:10:02 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/26 14:10:35 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/31 18:21:37 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	get_small_pos(t_stack *stack)
 	i = 0;
 	pos = 0;
 	val = get_small_val(stack);
-	while(stack->tab[i] != val)
+	while (stack->tab[i] != val)
 	{
 		pos++;
 		i++;
@@ -70,13 +70,10 @@ int	get_big_pos(t_stack *stack)
 	i = stack->start_b;
 	pos = 0;
 	val = get_big_val(stack);
-//	if (stack->tab[i])
-//	{
-		while(stack->tab[i] != val)
-		{
-			pos++;
-			i++;
-		}
-//	}
+	while (stack->tab[i] != val)
+	{
+		pos++;
+		i++;
+	}
 	return (pos);
 }

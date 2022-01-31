@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:29:06 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/31 16:23:55 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/31 18:25:00 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	push_and_rotate_median(t_stack *stack);
 void	push_and_rotate_bigquartil(t_stack *stack);
 void	push_and_rotate_quartil(t_stack *stack);
 void	push_and_rotate_bigquartil_eighth(t_stack *stack);
+void	push_and_rotate_small_eighth(t_stack *stack);
+void	push_and_rotate_quartil_smalleighth(t_stack *stack);
 void	sort_b(t_stack *stack);
 
 void	push_and_rotate_0_50(t_stack *stack);
@@ -62,14 +64,11 @@ void	push_and_rotate_250_300(t_stack *stack);
 void	push_and_rotate_300_400(t_stack *stack);
 void	push_and_rotate_400_500(t_stack *stack);
 
-
 void	sort_three(t_stack *stack);
-
 
 void	push_swap_small(t_stack *stack);
 void	push_swap_hundred(t_stack *stack);
 void	push_swap_fivehundred(t_stack *stack);
-
 
 int		*sort_tab(int *tab, int size);
 int		get_biggest(t_stack *stack);
@@ -85,7 +84,6 @@ int		get_thirtyth(t_stack *stack);
 int		get_fourtyth(t_stack *stack);
 int		get_sixtyth(t_stack *stack);
 int		get_eightyth(t_stack *stack);
-
 
 void	swap_a(t_stack *stack);
 void	rotate_a(t_stack *stack);
