@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/31 16:39:10 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/31 17:29:17 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,16 +97,12 @@ int	main(int argc, char **argv)
 		sort_three(stack);
 	else if (argc > 4 && argc < 8)
 		push_swap_small(stack);
-//	else if (argc >= 99 && argc < 500)
-//		push_swap_hundred_init(stack);
-//	else if (argc >= 8 && argc < 380)
-//		push_swap_hundred(stack);
 	else if (argc >= 8 && argc < 250)
 		push_swap_hundred(stack);
 	else if (argc >= 250)
 		push_swap_fivehundred(stack);
 
-	ft_afficher(stack);
+//	ft_afficher(stack);
 	free(stack->tab);
 	free(stack);
 	return (0);

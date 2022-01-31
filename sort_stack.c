@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 14:28:04 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/31 16:35:16 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/31 17:24:48 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	push_and_rotate_200_250(t_stack *stack)
 	i = 0;
 	median = get_median(stack);
 	fourty = get_fourtyth(stack);
-	while (i <= stack->size)
+	while (i <= stack->size + 1)
 	{
 		if (stack->tab[0] <= median && stack->tab[0] >= fourty)
 			push_b(stack);
@@ -80,6 +80,9 @@ void	push_and_rotate_250_300(t_stack *stack)
 		else if (stack->tab[stack->start_b - 1] != median)
 			rrotate_a(stack);
 	}
+	if (stack->tab[0] > median && stack->tab[0] <= sixty)
+			push_b(stack);
+
 }
 
 void	push_and_rotate_150_200(t_stack *stack)
@@ -112,6 +115,9 @@ void	push_and_rotate_300_400(t_stack *stack)
 		else if (stack->tab[stack->start_b - 1] != sixty)
 			rrotate_a(stack);
 	}
+	if (stack->tab[0] <= eighty && stack->tab[0] > sixty)
+		push_b(stack);
+
 }
 
 
