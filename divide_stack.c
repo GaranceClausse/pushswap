@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 14:13:52 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/28 16:49:28 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/31 15:54:50 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,4 +192,153 @@ int	get_quartil(t_stack *stack)
 
 	return (quartil);
 }
+
+int	get_tenth(t_stack *stack)
+{
+	int	i;
+	int	*tab;
+	int	size;
+	int	quartil;
+
+	i = 0;
+
+	size = stack->size + 1;
+	tab = malloc(sizeof(int) * (size));
+	if (!tab)
+		return (0);
+	while (i < size)
+	{
+		tab[i] = stack->tab[i];
+		i++;
+	}
+	tab = sort_tab(tab, size);
+	quartil = tab[size / 10];
+	free(tab);
+	return (quartil);
+}
+
+int	get_tentyth(t_stack *stack)
+{
+	int	i;
+	int	*tab;
+	int	size;
+	int	quartil;
+
+	i = 0;
+
+	size = stack->size + 1;
+	tab = malloc(sizeof(int) * (size));
+	if (!tab)
+		return (0);
+	while (i < size)
+	{
+		tab[i] = stack->tab[i];
+		i++;
+	}
+	tab = sort_tab(tab, size);
+	quartil = tab[(size / 10) * 2];
+	free(tab);
+	return (quartil);
+}
+
+int	get_thirtyth(t_stack *stack)
+{
+	int	i;
+	int	*tab;
+	int	size;
+	int	quartil;
+
+	i = 0;
+
+	size = stack->size + 1;
+	tab = malloc(sizeof(int) * (size));
+	if (!tab)
+		return (0);
+	while (i < size)
+	{
+		tab[i] = stack->tab[i];
+		i++;
+	}
+	tab = sort_tab(tab, size);
+	quartil = tab[(size / 10) * 3];
+	free(tab);
+
+	return (quartil);
+}
+
+int	get_fourtyth(t_stack *stack)
+{
+	int	i;
+	int	*tab;
+	int	size;
+	int	quartil;
+
+	i = 0;
+
+	size = stack->size + 1;
+	tab = malloc(sizeof(int) * (size));
+	if (!tab)
+		return (0);
+	while (i < size)
+	{
+		tab[i] = stack->tab[i];
+		i++;
+	}
+	tab = sort_tab(tab, size);
+	quartil = tab[(size / 10) * 4];
+	free(tab);
+	return (quartil);
+}
+
+int	get_sixtyth(t_stack *stack)
+{
+	int	i;
+	int	*tab;
+	int	size;
+	int	quartil;
+
+	i = 0;
+
+	size = stack->size + 1;
+	tab = malloc(sizeof(int) * (size));
+	if (!tab)
+		return (0);
+	while (i < size)
+	{
+		tab[i] = stack->tab[i];
+		i++;
+	}
+	tab = sort_tab(tab, size);
+	quartil = tab[(size / 10) * 6];
+	free(tab);
+	return (quartil);
+}
+
+int	get_eightyth(t_stack *stack)
+{
+	int	i;
+	int	*tab;
+	int	size;
+	int	quartil;
+
+	i = 0;
+
+	size = stack->size + 1;
+	tab = malloc(sizeof(int) * (size));
+	if (!tab)
+		return (0);
+	while (i < size)
+	{
+		tab[i] = stack->tab[i];
+		i++;
+	}
+	tab = sort_tab(tab, size);
+	quartil = tab[(size / 10) * 8];
+	free(tab);
+	return (quartil);
+}
+
+
+
+
 

@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 16:27:15 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/28 17:11:25 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/01/31 16:40:44 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,23 +119,6 @@ void	push_swap_hundred(t_stack *stack)
 {
 	push_and_rotate_median(stack);
 	sort_b(stack);
-	push_and_rotate_bigquartil(stack);
-	sort_b(stack);
-	push_and_rotate_quartil(stack);
-	sort_b(stack);
-	while (stack->tab[stack->start_b - 1] != get_biggest(stack))
-	{
-		rrotate_a(stack);
-		push_b(stack);
-
-	}
-	sort_b(stack);
-}
-
-void	push_swap_fivehundred(t_stack *stack)
-{
-	push_and_rotate_median(stack);
-	sort_b(stack);
 	push_and_rotate_bigquartil_eighth(stack);
 	sort_b(stack);
 	push_and_rotate_quartil(stack);
@@ -170,7 +153,27 @@ void	push_swap_fivehundred(t_stack *stack)
 	sort_b(stack);
 }
 
+void	push_swap_fivehundred(t_stack *stack)
+{
+	push_and_rotate_200_250(stack);
+	sort_b(stack);
+	push_and_rotate_250_300(stack);
+	sort_b(stack);
+	push_and_rotate_150_200(stack);
+	sort_b(stack);
+//	push_and_rotate_300_400(stack);
+//	sort_b(stack);
+//	push_and_rotate_100_150(stack);
+//	sort_b(stack);
+//	push_and_rotate_400_500(stack);
+//	sort_b(stack);
+//	push_and_rotate_50_100(stack);
+//	sort_b(stack);
+//	push_and_rotate_0_50(stack);
+//	sort_b(stack);
 
+
+}
 
 
 void	sort_three(t_stack *stack)
@@ -193,10 +196,3 @@ void	sort_three(t_stack *stack)
 	else if (stack_a_sorted(stack) == 0)
 		rrotate_a(stack);
 }
-/*
-void	push_swap_fivehundred_init(t_stack *stack)
-{
-	push_and_rotate_median(stack, 0);
-	push_swap_hundred(stack);
-}
-*/
