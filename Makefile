@@ -6,7 +6,7 @@
 #    By: gclausse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:46:56 by gclausse          #+#    #+#              #
-#    Updated: 2022/01/26 14:32:59 by gclausse         ###   ########.fr        #
+#    Updated: 2022/02/01 17:05:36 by gclausse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ NAME_EXEC= push_swap
 
 CC= gcc 
 
-CFLAGS= -Wall -Werror -Wextra -I${LIBFT_PATH}
+CFLAGS= -Wall -Werror -Wextra -g3 -I${LIBFT_PATH}
 
 OBJ= ${SRC:.c=.o}
 

@@ -6,26 +6,20 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 14:28:04 by gclausse          #+#    #+#             */
-/*   Updated: 2022/02/01 12:29:41 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/02/01 13:50:03 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_and_rotate_median(t_stack *stack)
+void	push_and_rotate_first(t_stack *stack, int start, int stop)
 {
 	int	i;
-	int	*tab;
-	int	median;
-	int	bigquartil;
 
 	i = 0;
-	tab = get_tab(stack);
-	median = tab[(stack->size + 1) / 2];
-	bigquartil = tab[((stack->size + 1) / 4) * 3];
 	while (i <= stack->size)
 	{
-		if (stack->tab[0] >= median && stack->tab[0] <= bigquartil)
+		if (stack->tab[0] <= start && stack->tab[0] >= stop)
 			push_b(stack);
 		else
 			rotate_a(stack);
@@ -42,7 +36,6 @@ void	push_and_rotate(t_stack *stack, int start, int stop)
 		else if (stack->tab[0] != stop)
 			rotate_a(stack);
 	}
-
 }
 
 void	push_and_rrotate(t_stack *stack, int start, int stop)
@@ -50,7 +43,7 @@ void	push_and_rrotate(t_stack *stack, int start, int stop)
 	while (stack->tab[stack->start_b - 1] != stop)
 	{
 		if (stack->tab[0] >= stop && stack->tab[0] <= start)
-	 		push_b(stack);
+			push_b(stack);
 		else if (stack->tab[stack->start_b - 1] != stop)
 			rrotate_a(stack);
 	}
@@ -64,52 +57,6 @@ void	push_and_rotate_last(t_stack *stack)
 	{
 		rrotate_a(stack);
 		push_b(stack);
-	}
-}
-
-
-void	push_and_rotate_400_500(t_stack *stack)
-{
-	int	eighty;
-
-	eighty = get_eightyth(stack);
-	while (stack->tab[stack->start_b - 1] != eighty)
-	{
-		if (stack->tab[0] > eighty)
-			push_b(stack);
-		else if (stack->tab[stack->start_b - 1] != eighty)
-			rrotate_a(stack);
-	}
-	if (stack->tab[0] > eighty)
-		push_b(stack);
-}
-
-void	push_and_rotate_small_eighth(t_stack *stack)
-{
-	while (stack->tab[stack->start_b - 1] != get_eighth(stack))
-	{
-		rrotate_a(stack);
-		if (stack->tab[0] > get_eighth(stack))
-			push_b(stack);
-	}
-}
-
-void	push_and_rotate_200_250(t_stack *stack)
-{
-	int	median;
-	int	fourty;
-	int	i;
-
-	i = 0;
-	median = get_median(stack);
-	fourty = get_fourtyth(stack);
-	while (i <= stack->size + 1)
-	{
-		if (stack->tab[0] <= median && stack->tab[0] >= fourty)
-			push_b(stack);
-		else
-			rotate_a(stack);
-		i++;
 	}
 }
 

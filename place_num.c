@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 16:27:15 by gclausse          #+#    #+#             */
-/*   Updated: 2022/02/01 12:35:08 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/02/01 14:43:45 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	sort_three(t_stack *stack)
 {
-	if (stack_a_sorted(stack) == 1)
+	if (stack_sorted(stack) == 1)
 		return ;
 	if (stack->tab[0] > stack->tab[1])
 	{
@@ -29,7 +29,7 @@ void	sort_three(t_stack *stack)
 		swap_a(stack);
 		rotate_a(stack);
 	}
-	else if (stack_a_sorted(stack) == 0)
+	else if (stack_sorted(stack) == 0)
 		rrotate_a(stack);
 }
 
@@ -64,17 +64,19 @@ void	push_swap_small(t_stack *stack)
 void	push_swap_hundred(t_stack *stack)
 {
 	int	*tab;
+	int	size;
 
+	size = (stack->size + 1);
 	tab = get_tab(stack);
-	push_and_rotate_median(stack);
+	push_and_rotate_first(stack, tab[(size / 4) * 3], tab[size / 2]);
 	sort_b(stack);
-	push_and_rrotate(stack, tab[((stack->size + 1) / 8 + 1) * 7], tab[((stack->size + 1) / 4) * 3]);
+	push_and_rrotate(stack, tab[(size / 8 + 1) * 7], tab[(size / 4) * 3]);
 	sort_b(stack);
-	push_and_rotate(stack, tab[(stack->size + 1) / 4], tab[(stack->size + 1) / 2]);
+	push_and_rotate(stack, tab[size / 4], tab[size / 2]);
 	sort_b(stack);
-	push_and_rotate_small_eighth(stack);
+	push_and_rrotate(stack, get_biggest(stack) + 1, tab[(size / 8 + 1) * 7]);
 	sort_b(stack);
-	push_and_rotate(stack, tab[(stack->size + 1) / 8], tab[(stack->size + 1) / 4]);
+	push_and_rotate(stack, tab[size / 8], tab[size / 4]);
 	sort_b(stack);
 	push_and_rotate_last(stack);
 	sort_b(stack);
@@ -86,8 +88,8 @@ void	push_swap_fivehundred(t_stack *stack)
 	int	tenth;
 
 	tab = get_tab(stack);
-	tenth = (stack->size + 1) / 10; 
-	push_and_rotate_200_250(stack);
+	tenth = (stack->size + 1) / 10;
+	push_and_rotate_first(stack, tab[tenth * 5], tab[tenth * 4]);
 	sort_b(stack);
 	push_and_rrotate(stack, tab[tenth * 6], tab[tenth * 5]);
 	sort_b(stack);
@@ -97,7 +99,7 @@ void	push_swap_fivehundred(t_stack *stack)
 	sort_b(stack);
 	push_and_rotate(stack, tab[tenth * 2], tab[tenth * 3]);
 	sort_b(stack);
-	push_and_rotate_400_500(stack);
+	push_and_rrotate(stack, get_biggest(stack) + 1, tab[tenth * 8]);
 	sort_b(stack);
 	push_and_rotate(stack, tab[tenth], tab[tenth * 2]);
 	sort_b(stack);

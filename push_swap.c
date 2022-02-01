@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/02/01 11:39:39 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/02/01 17:09:06 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,14 @@ void	ft_afficher(t_stack *stack)
 	}
 }
 
-t_stack	*create_a(int argc, char **argv, t_stack *stack)
+t_stack	*create_a(int argc, char **argv)
 {
 	int		i;
+	t_stack	*stack;
 
+	stack = malloc(sizeof(t_stack));
+	if (!stack)
+		return (0);
 	i = argc - 2;
 	stack->tab = malloc(sizeof(int) * (argc));
 	if (!stack->tab)
@@ -42,56 +46,8 @@ t_stack	*create_a(int argc, char **argv, t_stack *stack)
 	return (stack);
 }
 
-void	malloc_pbm(char **tmp, int j)
+void	choose_algo(int argc, t_stack *stack, char **tmp, int j)
 {
-	while (j >= 0)
-		free(tmp[j--]);
-	free (tmp);
-}
-
-int	main(int argc, char **argv)
-{
-	int		i;
-	int		j;
-	char	**tmp;
-	t_stack	*stack;
-
-	i = 0;
-	j = 0;
-	if (argc < 2)
-	{
-		write (1, "Error\n", 6);
-		return (0);
-	}
-	if (argc == 2)
-	{
-		tmp = ft_split(argv[1], ' ');
-		while (tmp[i])
-		{
-			argv[i + 1] = tmp[i];
-			i++;
-		}
-		argc = i + 1;
-		j = i - 1;
-	}
-	i = 0;
-	while (i < argc - 1)
-	{
-		i++;
-		if (check_int(argv[i]) == 0 || check_doubles(argv, argv[i], i) == 0)
-		{
-			write (1, "Error\n", 6);
-			if (j > 0)
-				malloc_pbm(tmp, j);
-			return (0);
-		}
-	}
-	stack = malloc(sizeof(t_stack));
-	if (!stack)
-		return (0);
-	stack = create_a(argc, argv, stack);
-	if (stack_a_sorted(stack))
-		return (0);
 	if (argc <= 4)
 		sort_three(stack);
 	else if (argc > 4 && argc < 60)
@@ -103,5 +59,48 @@ int	main(int argc, char **argv)
 //	ft_afficher(stack);
 	free(stack->tab);
 	free(stack);
+	if (j > 0)
+		malloc_free(tmp, j);
+}
+
+void	split_args(int *argc, char ***argv, char ***tmp, int *j)
+{
+	int	i;
+
+	i = 0;
+	*tmp = ft_split((*argv)[1], ' ');
+	while ((*tmp)[i])
+	{
+		(*argv)[i + 1] = (*tmp)[i];
+		i++;
+	}
+	*argc = i + 1;
+	*j = i - 1;
+}
+
+int	main(int argc, char **argv)
+{
+	int		j;
+	char	**tmp;
+	t_stack	*stack;
+
+	j = 0;
+	tmp = NULL;
+	if (argc < 2)
+	{
+		write (1, "Error\n", 6);
+		return (0);
+	}
+	if (argc == 2)
+		split_args(&argc, &argv, &tmp, &j);
+	stack = create_a(argc, argv);
+	if (stack_sorted(stack) || (check_input(argc, argv) == 0))
+	{
+		malloc_free(tmp, j);
+		free(stack->tab);
+		free(stack);
+		return (0);
+	}
+	choose_algo(argc, stack, tmp, j);
 	return (0);
 }
