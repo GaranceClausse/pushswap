@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 14:13:52 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/31 18:23:48 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/02/01 11:38:38 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,26 @@ int	*sort_tab(int *tab, int size)
 		else
 			i++;
 	}
+	return (tab);
+}
+
+int	*get_tab(t_stack *stack)
+{
+	int	i;
+	int	*tab;
+	int	size;
+
+	i = 0;
+	size = stack->size + 1;
+	tab = malloc(sizeof(int) * (size));
+	if (!tab)
+		return (0);
+	while (i < size)
+	{
+		tab[i] = stack->tab[i];
+		i++;
+	}
+	tab = sort_tab(tab, size);
 	return (tab);
 }
 

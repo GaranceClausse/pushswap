@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:29:06 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/31 18:25:00 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/02/01 12:29:34 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ int		get_small_val(t_stack *stack);
 int		get_big_val(t_stack *stack);
 int		get_big_pos(t_stack *stack);
 
+void	push_and_rotate(t_stack *stack, int start, int stop);
+void	push_and_rrotate(t_stack *stack, int start, int stop);
 void	push_and_rotate_median(t_stack *stack);
-void	push_and_rotate_bigquartil(t_stack *stack);
+void	push_and_rotate_last(t_stack *stack);
 void	push_and_rotate_quartil(t_stack *stack);
 void	push_and_rotate_bigquartil_eighth(t_stack *stack);
 void	push_and_rotate_small_eighth(t_stack *stack);
@@ -71,6 +73,7 @@ void	push_swap_hundred(t_stack *stack);
 void	push_swap_fivehundred(t_stack *stack);
 
 int		*sort_tab(int *tab, int size);
+int		*get_tab(t_stack *stack);
 int		get_biggest(t_stack *stack);
 int		get_median(t_stack *stack);
 int		get_bigquartil(t_stack *stack);
