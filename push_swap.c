@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/02/03 13:20:44 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/02/03 13:22:49 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	choose_algo(int argc, t_stack *stack, char **tmp, int j)
 		push_swap_hundred(stack);
 	else if (argc >= 250)
 		push_swap_fivehundred(stack);
-//	ft_afficher(stack);
 	free(stack->tab);
 	free(stack);
 	if (j > 0)
