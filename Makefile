@@ -6,7 +6,7 @@
 #    By: gclausse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:46:56 by gclausse          #+#    #+#              #
-#    Updated: 2022/02/01 17:05:36 by gclausse         ###   ########.fr        #
+#    Updated: 2022/02/03 13:55:12 by gclausse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ SRC= push_swap.c \
      check_input.c \
 	 divide_stack.c \
 	 get_index.c \
-	 stack_sorted.c \
 	 sort_stack.c
 
 LIBFT_PATH= libft

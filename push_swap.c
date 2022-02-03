@@ -6,23 +6,11 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/02/03 13:22:49 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/02/03 15:02:59 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_afficher(t_stack *stack)
-{
-	int	i;
-
-	i = 0;
-	while (i < 500)
-	{
-		printf("%d\n", stack->tab[i]);
-		i++;
-	}
-}
 
 t_stack	*create_a(int argc, char **argv)
 {
@@ -67,6 +55,8 @@ void	split_args(int *argc, char ***argv, char ***tmp, int *j)
 	int	i;
 
 	i = 0;
+	if ((*argv)[1][0] == '\0' || ft_strchr((*argv)[1], ' ') == 0)
+		return ;
 	*tmp = ft_split((*argv)[1], ' ');
 	while ((*tmp)[i])
 	{
@@ -95,7 +85,7 @@ int	main(int argc, char **argv)
 	stack = create_a(argc, argv);
 	if (stack_sorted(stack) || (check_input(argc, argv) == 0))
 	{
-		if (j > 0)
+		if (j != 0)
 			malloc_free(tmp, j);
 		free(stack->tab);
 		free(stack);

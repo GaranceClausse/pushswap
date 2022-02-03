@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:30:26 by gclausse          #+#    #+#             */
-/*   Updated: 2022/02/01 17:09:31 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/02/03 13:54:14 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,27 @@ int	check_input(int argc, char **argv)
 			return (0);
 		}
 	}
+	return (1);
+}
+
+int	stack_sorted(t_stack *stack)
+{
+	int	i;
+	int	cpt;
+
+	i = 1;
+	cpt = 1;
+	while (i < stack->start_b)
+	{
+		if (stack->tab[i] > stack->tab[i - 1])
+		{
+			i++;
+			cpt++;
+		}
+		else
+			i++;
+	}
+	if (cpt != i)
+		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 16:27:15 by gclausse          #+#    #+#             */
-/*   Updated: 2022/02/01 14:43:45 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/02/03 14:59:42 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ void	sort_three(t_stack *stack)
 {
 	if (stack_sorted(stack) == 1)
 		return ;
+	if (stack->size == 1)
+	{
+		rotate_a(stack);
+		return ;
+	}
 	if (stack->tab[0] > stack->tab[1])
 	{
 		if (stack->tab[1] > stack->tab[2] || (stack->tab[0] > stack->tab[1]
@@ -24,7 +29,7 @@ void	sort_three(t_stack *stack)
 		if (stack->tab[0] > stack->tab[1])
 			swap_a(stack);
 	}
-	else if (stack->tab[2] > stack->tab[0])
+	else if ((stack->tab[2] > stack->tab[0]))
 	{
 		swap_a(stack);
 		rotate_a(stack);
