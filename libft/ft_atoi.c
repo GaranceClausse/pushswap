@@ -6,11 +6,11 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 12:15:35 by gclausse          #+#    #+#             */
-/*   Updated: 2022/01/07 14:27:18 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/02/04 13:10:54 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+long int	ft_atoi(const char *str)
 {
 	int			i;
 	long int	nb;

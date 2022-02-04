@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/02/03 15:02:59 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/02/04 13:14:12 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ t_stack	*create_a(int argc, char **argv)
 	i = argc - 2;
 	stack->tab = malloc(sizeof(int) * (argc));
 	if (!stack->tab)
+	{
+		free (stack);
 		return (NULL);
+	}
 	stack->size = i;
 	stack->start_b = i + 1;
 	while (i >= 0)
@@ -58,6 +61,8 @@ void	split_args(int *argc, char ***argv, char ***tmp, int *j)
 	if ((*argv)[1][0] == '\0' || ft_strchr((*argv)[1], ' ') == 0)
 		return ;
 	*tmp = ft_split((*argv)[1], ' ');
+	if (!(*tmp))
+		return ;
 	while ((*tmp)[i])
 	{
 		(*argv)[i + 1] = (*tmp)[i];
