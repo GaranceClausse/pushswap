@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 16:27:15 by gclausse          #+#    #+#             */
-/*   Updated: 2022/02/03 14:59:42 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/02/08 15:08:21 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	push_swap_hundred(t_stack *stack)
 	sort_b(stack);
 	push_and_rotate_last(stack);
 	sort_b(stack);
+	free (tab);
 }
 
 void	push_swap_fivehundred(t_stack *stack)
@@ -110,4 +111,5 @@ void	push_swap_fivehundred(t_stack *stack)
 	sort_b(stack);
 	push_and_rotate_last(stack);
 	sort_b(stack);
+	free(tab);
 }
