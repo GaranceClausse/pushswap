@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:30:26 by gclausse          #+#    #+#             */
-/*   Updated: 2022/02/03 13:54:14 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/02/08 13:02:19 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_int(char *str)
 
 	i = 0;
 	num = ft_atoi(str);
-	if (num > 2147483647 || num < -2147483648)
+	if (num != (int)num)
 		return (0);
 	while (str[i])
 	{
@@ -62,9 +62,10 @@ int	check_input(int argc, char **argv)
 	while (i < argc - 1)
 	{
 		i++;
-		if (check_int(argv[i]) == 0 || check_doubles(argv, argv[i], i) == 0)
+		if (check_int(argv[i]) == 0 || check_doubles(argv, argv[i], i) == 0
+			|| ft_isalpha(ft_atoi(argv[i]) == 1))
 		{
-			write (1, "Error\n", 6);
+			write (2, "Error\n", 6);
 			return (0);
 		}
 	}
