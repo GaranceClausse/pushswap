@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/02/08 14:02:37 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/02/08 14:05:16 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	split_args(int *argc, char ***argv, char ***tmp, int *j)
 	int	i;
 
 	i = 0;
-	if (ft_isalpha((*argv)[1][0]) == 1)
-		write(2, "Error\n", 6);
 	if ((*argv)[1][0] == '\0' || ft_strchr((*argv)[1], ' ') == 0)
 		return ;
 	*tmp = ft_split((*argv)[1], ' ');
