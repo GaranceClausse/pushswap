@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:30:26 by gclausse          #+#    #+#             */
-/*   Updated: 2022/02/08 13:02:19 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/02/16 11:52:09 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	check_input(int argc, char **argv)
 	{
 		i++;
 		if (check_int(argv[i]) == 0 || check_doubles(argv, argv[i], i) == 0
-			|| ft_isalpha(ft_atoi(argv[i]) == 1))
+			|| ft_isalpha(ft_atoi(argv[i]) == 1) || ft_strchr(argv[i + 1], ' ') != NULL)
 		{
 			write (2, "Error\n", 6);
 			return (0);
