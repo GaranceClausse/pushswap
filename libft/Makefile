@@ -67,7 +67,7 @@ CFLAGS= -Wall -Werror -Wextra
 OBJ= ${SRC:.c=.o}
 
 %.o: %.c
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 all: ${NAME}
 
@@ -75,7 +75,7 @@ ${NAME}: ${OBJ}
 	ar -rc ${NAME} ${OBJ}
 
 clean:
-	rm -f *.o
+	rm -f ${OBJ}
 
 fclean: clean
 	rm -f ${NAME}

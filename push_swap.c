@@ -6,7 +6,7 @@
 /*   By: gclausse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:52:20 by gclausse          #+#    #+#             */
-/*   Updated: 2022/02/08 14:05:16 by gclausse         ###   ########.fr       */
+/*   Updated: 2022/02/16 12:47:59 by gclausse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,6 @@ int	main(int argc, char **argv)
 
 	j = 0;
 	tmp = NULL;
-	if (argc < 2)
-	{
-		write (2, "Error\n", 6);
-		return (0);
-	}
 	if (argc == 2)
 		split_args(&argc, &argv, &tmp, &j);
 	stack = create_a(argc, argv);

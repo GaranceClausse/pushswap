@@ -21,15 +21,13 @@ SRC= push_swap.c \
 
 LIBFT_PATH= libft
 
-LIBFT_NAME= libft.a
+LIBFT_NAME= ${LIBFT_PATH}/libft.a
 
-NAME= push_swap.a
-
-NAME_EXEC= push_swap
+NAME= push_swap
 
 CC= gcc 
 
-CFLAGS= -Wall -Werror -Wextra -g3 -I${LIBFT_PATH}
+CFLAGS= -Wall -Werror -Wextra -I${LIBFT_PATH}
 
 OBJ= ${SRC:.c=.o}
 
@@ -40,15 +38,13 @@ all: ${NAME}
 		
 ${NAME}: ${OBJ}
 		make -C ${LIBFT_PATH}
-		cp ${LIBFT_PATH}/${LIBFT_NAME} ${NAME}
-		ar -rc ${NAME} ${OBJ}
-		@${CC} ${CFLAGS} ${NAME} -o ${NAME_EXEC}
+		${CC} ${OBJ} ${LIBFT_NAME} -o ${NAME}
 
 clean:
-	make clean -C ${LIBFT_PATH} && rm -f *.o
+	make clean -C ${LIBFT_PATH} && rm -f ${OBJ}
 
 fclean: clean
-	make clean -C ${LIBFT_PATH} && rm -f ${LIBFT_PATH}/${LIBFT_NAME} && rm -f ${NAME} && rm -f ${NAME_EXEC}
+	rm -f ${LIBFT_NAME} && rm -f ${NAME}
 
 re: fclean all
 
